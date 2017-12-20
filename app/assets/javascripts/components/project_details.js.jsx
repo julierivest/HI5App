@@ -3,11 +3,29 @@ class ProjectDetails extends React.Component {
     super(props)
 
     this.state = {
-      comment: ''
+      comment: '',
+      comments: [],
+      comments_loading: true
     }
 
     this.handleCommentChanged = this.handleCommentChanged.bind(this)
     this.handleCommentSubmit  = this.handleCommentSubmit.bind(this)
+    this.loadComments = this.loadComments.bind(this)
+  }
+
+  componentDidMount() {
+    this.loadComments()
+  }
+
+  loadComments() {
+    axios.get(
+      `/projects/${this.props.project.id}/comments`
+    ).then((response) => {
+      this.setState({
+        comments: response.data.comments,
+        comments_loading: false,
+      })
+    })
   }
 
   handleCommentChanged(e) {
@@ -16,63 +34,81 @@ class ProjectDetails extends React.Component {
     })
   }
 
-  handleCommentSubmit() {
+  handleCommentSubmit(e) {
+    e.preventDefault()
     axios.post(`/projects/${this.props.project.id}/comments`, {
       authenticity_token: this.props.form_token,
       comment: {
         body: this.state.comment
       }
     }).then((response) => {
-      console.log(response)
+      this.setState({comment: ''})
+      this.loadComments()
     })
   }
 
   render () {
-    console.log(this.props.project)
-    const { id, user, name, description, status, estimated_effort, public, comments } = this.props.project
-    return(
-      <div>
-          <div>
-            <a href={`/projects/${id}`}>{name}</a>
+    const { id, user, name, description, status, estimated_effort, public } = this.props.project
+    return (
+      <div className="row">
+      <div className="col-xs-2"></div>
+        <div className="col-xs-8">
+
+          <div className="project-box">
+
+            <div className="project-header">
+              <div>
+                <a className="project-name" href={`/projects/${id}`}>{name}</a>
+              </div>
+
+              <div>
+                <span className="project-user">{user.email}</span>
+              </div>
+            </div>
+
+            <div className="project-body">
+              <div>
+                <p className="project-description">{description}</p>
+              </div>
+
+              <div className="inline">
+                <span className="project-status">Status: {status}</span>
+              </div>
+
+              <div className="inline">
+                <span className="project-es-effort">Estimated effort: {estimated_effort}</span>
+              </div>
+
+              <div className="inline">
+                <span className="project-public">{public ? "Public" : "Private"}</span>
+              </div>
+            </div>
           </div>
 
-          <div>
-            {user.email}
+          <div className="comments-section">
+            <CommentForm
+              project_id={id}
+              handleCommentSubmit={this.handleCommentSubmit}
+              handleCommentChanged={this.handleCommentChanged}
+              value={this.state.comment}
+              form_token={this.props.form_token}
+            />
+
+            <div>
+              {
+                this.state.comments_loading
+                  ? null
+                  : this.state.comments.map((comment) => {
+                      return <Comment key={comment.id} {...comment} />
+                  })
+
+              }
+            </div>
           </div>
 
-          <div>
-            {description}
-          </div>
-
-          <div>
-            {status}
-          </div>
-
-          <div>
-            {estimated_effort}
-          </div>
-
-          <div>
-            {public}
-          </div>
-
-          <CommentForm
-            project_id={id}
-            handleCommentSubmit={this.handleCommentSubmit}
-            handleCommentChanged={this.handleCommentChanged}
-            form_token={this.props.form_token}
-          />
-          <div>
-            {
-              this.props.comments && this.props.comments.map((comment) => {
-                return <Comment key={comment.id} {...comment} />
-              })
-            }
-          </div>
-
-
+        </div>
+      <div className="col-xs-2"></div>
       </div>
     )
   }
-
 }

@@ -1,10 +1,16 @@
 class CommentForm extends React.Component {
   render() {
     return (
-      <div>
+      <div className="comment-new-box">
         <form onSubmit={this.props.handleCommentSubmit}>
-        <textarea onChange={this.props.handleCommentChanged}></textarea>
-        <button type="submit" onClick={this.props.handleCommentSubmit}>Submit</button>
+          <textarea
+            className="comment-textarea"
+            onChange={this.props.handleCommentChanged}
+            value={this.props.value}
+          ></textarea>
+
+          <button className="comment-submit-btn" type="submit" onClick={this.props.handleCommentSubmit}>Submit</button>
+
         </form>
       </div>
     )

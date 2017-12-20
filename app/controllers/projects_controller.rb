@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.where(public: true)
     authorize @projects
-    @projects = @projects.order(created_at: :desc).include_associations
+    @projects = @projects.order(created_at: :desc).include_user
 
   end
 

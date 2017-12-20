@@ -1,6 +1,17 @@
 class CommentsController < ApplicationController
 
 
+  def index
+    @comments = project.comments.
+      includes(:user).
+      order(created_at: :desc).
+      as_json(include: [:user])
+    render json: {
+      comments: @comments
+    }
+  end
+
+
   def create
     @comment = project.comments.build(comment_params)
     @comment.user = current_user

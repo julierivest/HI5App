@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -10,29 +10,29 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><%= link_to 'Home', projects_path %></li>
+        <li><%= link_to 'Home', projects_path, :class => "nav-link" %></li>
         <% if current_user %>
 
-        <li><%= link_to "My Projects", profile_path(current_user.id) %></li>
+        <li><%= link_to "My Projects", profile_path(current_user.id), :class => "nav-link" %></li>
         <% end %>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
         <li>
-        <a href="#">Logged in as <%= current_user.email %></a>
+        <a href="#" class="nav-link">Logged in as <%= current_user.email %></a>
         </li>
         <li>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "nav-link"%>
         </li>
 
 
         <% else %>
         <li>
-          <%= link_to "Sign up", new_registration_path(resource_name) %>
+          <%= link_to "Sign up", new_registration_path(resource_name), :class => "nav-link" %>
         </li>
         <li>
-          <%= link_to "Log in", new_session_path(resource_name) %>
+          <%= link_to "Log in", new_session_path(resource_name), :class => "nav-link" %>
         </li>
         <% end %>
 

@@ -1,4 +1,4 @@
-//= require bootstrap-sprockets
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -12,11 +12,9 @@
 // about supported directives.
 //
 
+//= require bootstrap-sprockets
+//= require jquery
 //= require react
 //= require components
 //= require server_rendering
 //= require axios
-
-//= require react
-//= require react_ujs
-//= require components

@@ -10,9 +10,8 @@ class Project < ApplicationRecord
   validates_inclusion_of :estimated_effort, in: %w(high medium low)
 
 
-  def self.include_associations
-    includes(:comments).
-      includes(:user).
-      as_json(include: [:user, :comments])
+  def self.include_user
+    includes(:user).
+      as_json(include: [:user])
   end
 end

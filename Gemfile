@@ -14,6 +14,7 @@ gem 'devise'
 gem 'pg'
 
 gem 'react-rails'
+gem 'jquery-rails'
 
 gem 'omniauth-facebook'
 
