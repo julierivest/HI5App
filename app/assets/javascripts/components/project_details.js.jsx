@@ -5,12 +5,13 @@ class ProjectDetails extends React.Component {
     this.state = {
       comment: '',
       comments: [],
-      comments_loading: true
+      comments_loading: true,
     }
 
     this.handleCommentChanged = this.handleCommentChanged.bind(this)
     this.handleCommentSubmit  = this.handleCommentSubmit.bind(this)
     this.loadComments = this.loadComments.bind(this)
+    this.handleCommentUpdate = this.handleCommentUpdate.bind(this)
   }
 
   componentDidMount() {
@@ -47,7 +48,19 @@ class ProjectDetails extends React.Component {
     })
   }
 
+  handleCommentUpdate(id, body) {
+    axios.put(`/projects/${this.props.project.id}/comments/${id}`, {
+      authenticity_token: this.props.form_token,
+      comment: {
+        body: body
+      }
+    }).then((response) => {
+      this.loadComments()
+    })
+  }
+
   render () {
+    console.log('rendered')
     const { id, user, name, description, status, estimated_effort, public } = this.props.project
     return (
       <div className="row">
@@ -99,7 +112,12 @@ class ProjectDetails extends React.Component {
                 this.state.comments_loading
                   ? null
                   : this.state.comments.map((comment) => {
-                      return <Comment key={comment.id} {...comment} />
+                      return <Comment
+                        key={comment.id}
+                        {...comment}
+                        handleCommentUpdate={this.handleCommentUpdate}
+                        editing={false}
+                      />
                   })
 
               }

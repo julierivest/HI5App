@@ -23,6 +23,19 @@ class CommentsController < ApplicationController
     end
   end
 
+   def update
+    @comment = project.comments.find(params[:id])
+    if @comment.update(comment_params)
+      render json: {
+        comment: @comment.as_json
+      }
+    else
+      render json: {
+        errors: @comment.errors
+      }
+    end
+  end
+
 
   def destroy
     @comment = project.comments.find(params[:id])
