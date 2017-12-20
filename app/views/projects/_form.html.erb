@@ -1,0 +1,64 @@
+<%= form_with model: @project, local: true do |form| %>
+
+<% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@project.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.radio_button :estimated_effort, 'low', :checked => true %>
+    <%= form.label :estimated_effort, 'Low', :value => 'low' %>
+    <%= form.radio_button :estimated_effort, 'medium' %>
+    <%= form.label :estimated_effort, 'Medium', :value => 'medium' %>
+    <%= form.radio_button :estimated_effort, 'high' %>
+    <%= form.label :estimated_effort, 'High', :value => 'high' %>
+
+  </p>
+
+  <p>
+    <%= form.radio_button :status, 'created', :checked => true %>
+    <%= form.label :status, 'Created', :value => 'created' %>
+    <%= form.radio_button :status, 'started' %>
+    <%= form.label :status, 'Started', :value => 'started' %>
+    <%= form.radio_button :status, 'stopped' %>
+    <%= form.label :status, 'Stopped', :value => 'stopped' %>
+    <%= form.radio_button :status, 'completed' %>
+    <%= form.label :status, 'Completed', :value => 'completed' %>
+  </p>
+
+  <p>
+
+    <%= form.radio_button :public, value: true %>
+    <%= form.label :public, 'Yes', :value => true %>
+
+    <%= form.radio_button :public, value: false %>
+    <%= form.label :public, 'No', :value => false %>
+
+
+
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>

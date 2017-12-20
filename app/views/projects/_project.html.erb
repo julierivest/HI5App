@@ -1,0 +1,39 @@
+<h2>Project</h2>
+    <p><%= project.created_at.strftime("%d %b. %Y %H:%M")%></p>
+    <p><%= project.user_id %></p>
+    <p><%= project.name %></p>
+    <p><%= project.description %></p>
+    <p>Estimated effort: <%= project.estimated_effort %></p>
+    <p>Status: <%= project.status %></p>
+    <p>Public? <%= project.public %></p>
+
+    <% if policy(project).edit? %>
+<p><%= link_to 'Edit', edit_project_path(project) %></p>
+<% end -%>
+  <% if policy(project).destroy? %>
+    <p><%= link_to 'Destroy Project', project_path(project),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></p>
+  <% end -%>
+
+
+<% if project.comments.count > 0 %>
+<h2>Comments</h2>
+<%= render project.comments %>
+
+<% end %>
+
+<h2>Add comment</h2>
+<%= form_with(model: [ project, project.comments.build ]) do |form| %>
+
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+
+

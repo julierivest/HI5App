@@ -1,0 +1,12 @@
+<h2>My Projects</h2>
+<br>
+<% if policy(Project).new? %>
+<%= link_to 'New Project', new_project_path %>
+<% end -%>
+
+<hr>
+<% if @user.projects.count > 0 %>
+<% @user.projects.each do |project| %>
+  <%= render 'projects/project', project: project %>
+  <% end %>
+<% end %>

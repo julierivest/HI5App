@@ -1,0 +1,10 @@
+<h1>ALL Users</h1>
+
+<% if @users.count > 0 %>
+
+<% @users.each do |user| %>
+<hr>
+<%= user.email %>
+<% end -%>
+<% end -%>
+
