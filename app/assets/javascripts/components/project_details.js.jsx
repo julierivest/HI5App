@@ -70,32 +70,32 @@ class ProjectDetails extends React.Component {
           <div className="project-box">
 
             <div className="project-header">
-              <div>
+              <div className="inline">
                 <span className="project-name">{name}</span>
+
+                <span className="project-status">{status}</span>
               </div>
 
+            </div>
+
+
+            <div className="project-body">
               <div>
                 <span className="project-user">{user.email}</span>
                 <span className="project-date">{created_at}</span>
               </div>
-            </div>
 
-            <div className="project-body">
-              <div>
+              <div className="inline">
                 <p className="project-description">{description}</p>
               </div>
 
-              <div className="inline">
-                <span className="project-status">Status: {status}</span>
-              </div>
+
 
               <div className="inline">
-                <span className="project-es-effort">Estimated effort: {estimated_effort}</span>
+                <span className="project-es-effort">{estimated_effort}</span>
               </div>
 
-              <div className="inline">
-                <span className="project-public">{public ? "Public" : "Private"}</span>
-              </div>
+
             </div>
           </div>
 

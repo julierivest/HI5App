@@ -2,7 +2,8 @@
 @import "bootstrap";
 
 body{
-  padding-top: 60px;
+  padding-top: 100px;
+  background-color: #eff3f7;
 }
 
 
@@ -65,13 +66,139 @@ body{
 
 .navbar {
   border-radius: 0px;
-  background-color: orange;
+  background-color: #093ac9;
   border: none;
-  li > a.nav-link {
+  .navbar-brand{
+    font-size: 16px;
     color: white;
-    font-weight: 400;
+    font-weight: 700;
+  }
+  li > a.nav-link{
+    color: white;
+
+    font-size: 12px;
+  }
+
+
+}
+
+
+
+.project-box{
+  //border: 2px solid red;
+  box-shadow:  0 0 10px lightgray;
+  border-radius: 5px;
+  .project-header {
+    border-radius: 5px 5px 0 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e1e8ee;
+    background-color: white;
+
+    .project-name{
+      vertical-align: middle;
+      display: inline;
+      font-size: 24px;
+      font-weight: 600;
+      color: #404140;
+
+    }
+    .project-status{
+      vertical-align: middle;
+      display: inline;
+      float: right;
+    }
+
+  }
+  .project-body{
+    background-color: white;
+    padding: 20px;
+    .inline{
+      display: inline-block;
+      margin-right: 15px;
+    }
   }
 }
+
+.comments-section{
+  padding: 20px 30px;
+  background-color: #ff9b9b;
+
+  .comment-new-box{
+    position: relative;
+
+    .comment-textarea{
+
+      display: inline;
+
+      min-width: 75%;
+      min-height: 40px;
+      max-width: 85%;
+      margin-right: 20px;
+    }
+    .comment-submit-btn{
+      position: absolute;
+      top: 0;
+      display: inline;
+      background-color: red;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: white;
+      font-weight: 400;
+      border: red;
+      &:hover{
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  .comment{
+    position: relative;
+    .comment-user {
+      color: #8500bf;
+      display: inline-block;
+    }
+    .comment-body{
+    margin: 10px;
+    }
+    .comment-date{
+      display: inline-block;
+      float: right;
+    }
+    .comment-textarea-edit{
+      width: 75%;
+    }
+
+    .comment-edit-btn, .comment-update-btn {
+
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: red;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: white;
+      font-weight: 400;
+      border: red;
+      &:hover{
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}
+
+
+/*
+
+
 
 .project-box{
   border: 2px solid red;
@@ -181,5 +308,9 @@ body{
 }
 
 
+
+
+
+*/
 
 

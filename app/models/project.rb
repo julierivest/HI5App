@@ -7,6 +7,7 @@ class Project < ApplicationRecord
   validates :estimated_effort, presence: true
   validates :status, presence: true
 
+  validates_inclusion_of :status, in: %w(created started stopped completed)
   validates_inclusion_of :estimated_effort, in: %w(high medium low)
 
 
