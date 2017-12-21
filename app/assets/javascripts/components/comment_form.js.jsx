@@ -12,6 +12,7 @@ class CommentForm extends React.Component {
           <button className="comment-submit-btn" type="submit" onClick={this.props.handleCommentSubmit}>Submit</button>
 
         </form>
+
       </div>
     )
   }

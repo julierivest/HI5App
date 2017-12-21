@@ -61,7 +61,7 @@ class ProjectDetails extends React.Component {
 
   render () {
     console.log('rendered')
-    const { id, user, name, description, status, estimated_effort, public } = this.props.project
+    const { id, user, name, description, status, estimated_effort, public, created_at } = this.props.project
     return (
       <div className="row">
       <div className="col-xs-2"></div>
@@ -71,11 +71,12 @@ class ProjectDetails extends React.Component {
 
             <div className="project-header">
               <div>
-                <a className="project-name" href={`/projects/${id}`}>{name}</a>
+                <span className="project-name">{name}</span>
               </div>
 
               <div>
                 <span className="project-user">{user.email}</span>
+                <span className="project-date">{created_at}</span>
               </div>
             </div>
 

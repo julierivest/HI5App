@@ -24,20 +24,21 @@ class Comment extends React.Component {
   }
 
   handleCommentUpdate(id, body) {
+    // delegation or wrapping or proxy method
     this.props.handleCommentUpdate(id, this.state.body)
     this.setState({editing: false})
   }
 
-
   renderComment() {
     const { id, body, user, created_at } = this.props
     return (
-      <div
-        className='comment'
-      >
-        {body} - {user.email}
-        <div><button onClick={this.editComment}>edit</button></div>
-        <hr/>
+      <div className="comment">
+      <hr/>
+        <span className="comment-user">{user.email}</span>
+        <span className="comment-date">{created_at}</span>
+        <p className="comment-body">{body}</p>
+        <button className="comment-edit-btn" onClick={this.editComment}>Edit</button>
+
       </div>
     )
   }
@@ -45,17 +46,19 @@ class Comment extends React.Component {
   renderEditForm() {
     const { id, body, user, created_at } = this.props
     return (
-      <div className="comment-new-box">
+      <div className="comment">
+      <hr/>
         <form onSubmit={(e) => this.handleCommentUpdate(id, this.state.body)}>
+          <span className="comment-user">{user.email}</span>
+          <span className="comment-date">{created_at}</span>
           <textarea
-            className="comment-textarea"
+            className="comment-textarea-edit"
             value={this.state.body}
             onChange={this.handleChange}
           ></textarea>
-
-          <button className="comment-submit-btn" type="submit" onClick={(e) => this.handleCommentUpdate(id, this.state.body)}>Update</button>
-
+          <button className="comment-update-btn" type="submit" onClick={(e) => this.handleCommentUpdate(id, this.state.body)}>Update</button>
         </form>
+
       </div>
     )
   }

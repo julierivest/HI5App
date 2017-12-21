@@ -1,11 +1,17 @@
 if Rails.env.development?
   p "running seeds for development"
+
+  name = "Jack Bauer"
   email = 'user-1@example.com'
-  user_1 = User.create! email: email, password: email, password_confirmation: email
+  user_1 = User.create! name: name, email: email, password: email, password_confirmation: email, admin: false
 
+  name = "James Bond"
   email = 'user-2@example.com'
-  user_2 = User.create! email: email, password: email, password_confirmation: email
+  user_2 = User.create! name: name, email: email, password: email, password_confirmation: email, admin: false
 
+  name = "Admin"
+  email = admin = 'admin@hiapp.com'
+  user_3 = User.create! name: name, email: email, password: email, password_confirmation: email, admin: true
 
   proj_1 = user_1.projects.create! name: "User 1 project 1", description: "Some awesome project for user 1",
                           public: true, status: "created", estimated_effort: "low", actual_effort: "high"
