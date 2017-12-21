@@ -1,20 +1,33 @@
-var ProjectListing = createReactClass({
+class ProjectListing extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
 
-  render: function() {
+    }
+    this.commentsDisplay = this.commentsDisplay.bind(this)
+  }
 
-    const { id, user, name, description, status, estimated_effort, public, comments } = this.props
+  commentsDisplay() {
+    console.log("comments num: " + this.props.comments);
+  }
 
-    return(
+  render () {
+    console.log('rendered')
+
+    const { id, user, name, description, status, estimated_effort, public, created_at, comments } = this.props
+    return (
 
       <div>
         <div className="project-box">
           <div className="project-header">
             <div>
               <a className="project-name" href={`/projects/${id}`}>{name}</a>
+
             </div>
 
             <div>
               <span className="project-user">{user.email}</span>
+              <span className="project-date">{created_at}</span>
             </div>
           </div>
           <div className="project-body">
@@ -35,9 +48,10 @@ var ProjectListing = createReactClass({
             </div>
           </div>
         </div>
+        { this.commentsDisplay() }
 
         <br />
-          <div>
+          <div className="comments">
             {
               comments && comments.map((comment) => {
                 return <Comment key={comment.id} {...comment} />
@@ -50,4 +64,4 @@ var ProjectListing = createReactClass({
     );
   }
 
-});
+}
