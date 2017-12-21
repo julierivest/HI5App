@@ -12,6 +12,8 @@ class ProjectDetails extends React.Component {
     this.handleCommentSubmit  = this.handleCommentSubmit.bind(this)
     this.loadComments = this.loadComments.bind(this)
     this.handleCommentUpdate = this.handleCommentUpdate.bind(this)
+    this.handleCommentDelete = this.handleCommentDelete.bind(this)
+    this.canModify = this.canModify.bind(this)
   }
 
   componentDidMount() {
@@ -59,9 +61,20 @@ class ProjectDetails extends React.Component {
     })
   }
 
+  handleCommentDelete(id) {
+    axios.delete(`/projects/${this.props.project.id}/comments/${id}`, {
+      data: { authenticity_token: this.props.form_token }
+    }).then((response) => {
+      this.loadComments()
+    })
+  }
+
+  canModify(comment) {
+    return this.props.is_admin || this.props.current_user.id == comment.user.id
+  }
+
   render () {
-    console.log('rendered')
-    const { id, user, name, description, status, estimated_effort, public, created_at } = this.props.project
+    const { id, user, name, description, status, estimated_effort, public, created_at, current_user } = this.props.project
     return (
       <div className="row">
       <div className="col-xs-2"></div>
@@ -118,6 +131,8 @@ class ProjectDetails extends React.Component {
                         {...comment}
                         handleCommentUpdate={this.handleCommentUpdate}
                         editing={false}
+                        canModify={this.canModify(comment)}
+                        handleCommentDelete={this.handleCommentDelete}
                       />
                   })
 

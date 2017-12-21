@@ -172,7 +172,9 @@ body{
       width: 75%;
     }
 
-    .comment-edit-btn, .comment-update-btn {
+    .comment-edit-btn,
+    .comment-delete-btn,
+    .comment-update-btn {
 
       position: absolute;
       bottom: 0;

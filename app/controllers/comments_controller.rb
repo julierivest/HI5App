@@ -39,10 +39,16 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = project.comments.find(params[:id])
-    @comment.user = current_user
-    @comment.destroy
-
-    redirect_to project_path(@project)
+    authorize @comment
+    if @comment.destroy
+      render json: {
+        status: :ok
+      }
+    else
+      render json: {
+        errors: @comment.errors
+      }
+    end
   end
 
   private

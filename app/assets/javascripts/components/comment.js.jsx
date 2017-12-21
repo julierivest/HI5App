@@ -30,15 +30,24 @@ class Comment extends React.Component {
   }
 
   renderComment() {
-    const { id, body, user, created_at } = this.props
+    const { id, body, user, created_at, canModify, handleCommentDelete } = this.props
     return (
       <div className="comment">
       <hr/>
         <span className="comment-user">{user.email}</span>
         <span className="comment-date">{created_at}</span>
         <p className="comment-body">{body}</p>
-        <button className="comment-edit-btn" onClick={this.editComment}>Edit</button>
 
+        {
+          canModify
+            ? (
+              <div>
+                <button className="comment-edit-btn" onClick={this.editComment}>Edit</button>
+                <button className="comment-delete-btn" onClick={() => handleCommentDelete(id)}>X</button>
+              </div>
+            )
+            : null
+        }
       </div>
     )
   }
@@ -64,7 +73,6 @@ class Comment extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return this.state.editing
       ? this.renderEditForm()
       : this.renderComment()
