@@ -27,16 +27,19 @@
         <% if current_user %>
 
         <li>
-          <%= link_to "SIGN OUT", destroy_user_session_path, method: :get, :class => "nav-link"%>
+        <button id="sign-in-btn" class="btn navbar-btn">SIGN OUT</button>
+
         </li>
 
 
         <% else %>
         <li>
-          <%= link_to "SIGN UP", new_registration_path(resource_name), :class => "nav-link" %>
+        <button id="sign-in-btn" class="btn navbar-btn">SIGN UP</button>
+
         </li>
         <li>
-          <%= link_to "SIGN IN", new_session_path(resource_name), :class => "nav-link" %>
+        <button id="sign-in-btn" class="btn navbar-btn">SIGN IN</button>
+
         </li>
         <% end %>
 

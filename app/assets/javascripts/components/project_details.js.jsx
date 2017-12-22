@@ -74,7 +74,7 @@ class ProjectDetails extends React.Component {
   }
 
   render () {
-    const { id, user, name, description, status, estimated_effort, published, created_at, current_user } = this.props.project
+    const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
     return (
       <div className="row">
 
@@ -102,8 +102,14 @@ class ProjectDetails extends React.Component {
                 <p className="project-description">{description}</p>
                 </div>
                 <div className="inline">
+                <div className="es-effort-div text-center">
+                <span className="effort-title">Estimated level of effort</span>
                 <span className="project-es-effort">{estimated_effort}</span>
-                <span className="project-es-effort">{estimated_effort}</span>
+                </div>
+                <div className="ac-effort-div text-center">
+                <span className="effort-title">Actual level of effort</span>
+                <span className="project-ac-effort">{actual_effort ? actual_effort : estimated_effort}</span>
+                </div>
                 </div>
               </div>
 
