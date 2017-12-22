@@ -16,29 +16,35 @@
 
         <li><%= link_to "MY PROJECTS", profile_path(current_user.id), :class => "nav-link" %></li>
 
-        <% if current_user.admin %>
+        <% if current_user.admin && false %>
           <li><%= link_to "USERS", users_path, :class => "nav-link" %></li>
         <% end %>
+
+        <li>
+          <%= link_to "NEW PROJECT", new_project_path, :class => "btn navbar-btn", :id => "new-project-btn" %>
+        </li>
+
        <% end %>
       </ul>
-      <button id="new-project-btn" class="btn navbar-btn">NEW PROJECT</button>
+
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
 
         <li>
-        <button id="sign-in-btn" class="btn navbar-btn">SIGN OUT</button>
 
+          <%= link_to "SIGN OUT", destroy_user_session_path, method: :get, :class => "btn navbar-btn", :id => "sign-in-btn"%>
         </li>
 
 
         <% else %>
         <li>
-        <button id="sign-in-btn" class="btn navbar-btn">SIGN UP</button>
 
+          <%= link_to "SIGN UP", new_registration_path(resource_name), :class => "btn navbar-btn", :id => "sign-in-btn" %>
         </li>
         <li>
-        <button id="sign-in-btn" class="btn navbar-btn">SIGN IN</button>
+
+         <%= link_to "SIGN IN", new_session_path(resource_name), :class => "btn navbar-btn", :id => "sign-in-btn" %>
 
         </li>
         <% end %>

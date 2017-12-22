@@ -33,21 +33,24 @@ class Comment extends React.Component {
     const { id, body, user, created_at, canModify, handleCommentDelete } = this.props
     return (
       <div className="comment">
-      <hr/>
-        <span className="comment-user">{user.email}</span>
-        <span className="comment-date">{created_at}</span>
-        <p className="comment-body">{body}</p>
-
+      <div>
+        <i className="fa fa-user" aria-hidden="true"></i><span className="comment-user">{user.name ? user.name : user.email}</span>
+        <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{created_at}</span>
         {
           canModify
             ? (
-              <div>
-                <button className="comment-edit-btn" onClick={this.editComment}>Edit</button>
-                <button className="comment-delete-btn" onClick={() => handleCommentDelete(id)}>X</button>
+              <div className="modify-comment-btns-div">
+                <i className="fa fa-pencil-square-o comment-edit-btn" onClick={this.editComment} aria-hidden="true"></i>
+                <i className="fa fa-trash comment-delete-btn" onClick={() => handleCommentDelete(id)} aria-hidden="true"></i>
+
               </div>
             )
             : null
         }
+
+      </div>
+
+          <p className="comment-body">{body}</p>
       </div>
     )
   }
@@ -56,16 +59,18 @@ class Comment extends React.Component {
     const { id, body, user, created_at } = this.props
     return (
       <div className="comment">
-      <hr/>
+
         <form onSubmit={(e) => this.handleCommentUpdate(id, this.state.body)}>
-          <span className="comment-user">{user.email}</span>
-          <span className="comment-date">{created_at}</span>
+          <i className="fa fa-user" aria-hidden="true"></i><span className="comment-user">{user.name ? user.name : user.email}</span>
+          <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{created_at}</span>
+          <div className="">
           <textarea
             className="comment-textarea-edit"
             value={this.state.body}
             onChange={this.handleChange}
           ></textarea>
           <button className="comment-update-btn" type="submit" onClick={(e) => this.handleCommentUpdate(id, this.state.body)}>Update</button>
+          </div>
         </form>
 
       </div>

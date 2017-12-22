@@ -7,7 +7,6 @@ var CommentsContainer = createReactClass({
             return <Comment key={comment.id} {...comment} />
           })
         }
-
       </div>
     );
   }

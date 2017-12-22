@@ -7,9 +7,10 @@ class CommentForm extends React.Component {
             className="comment-textarea"
             onChange={this.props.handleCommentChanged}
             value={this.props.value}
+            placeholder="Write a comment..."
           ></textarea>
 
-          <button className="comment-submit-btn" type="submit" onClick={this.props.handleCommentSubmit}>Submit</button>
+          <button className="comment-submit-btn" type="submit" onClick={this.props.handleCommentSubmit}>Comment</button>
 
         </form>
 
