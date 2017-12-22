@@ -1,15 +1,18 @@
+
 <h2>
   <%= @user.name ? @user.name : @user.email %>
 </h2>
-<br>
-<% if policy(Project).new? %>
-<%= link_to 'New Project', new_project_path %>
-<% end -%>
 
-<h4>My Projects</h4>
-<hr>
-<% if @user.projects.count > 0 && false %>
-<% @user.projects.each do |project| %>
-  <%= render 'projects/project', project: project %>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+
+  <%= react_component("ProjectsContainer", { projects: @user.projects }) %>
+
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+
+
+

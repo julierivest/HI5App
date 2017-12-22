@@ -6,6 +6,8 @@ class ProjectDetails extends React.Component {
       comment: '',
       comments: [],
       comments_loading: true,
+      editing: false,
+      ...props.project,
     }
 
     this.handleCommentChanged = this.handleCommentChanged.bind(this)
@@ -14,6 +16,12 @@ class ProjectDetails extends React.Component {
     this.handleCommentUpdate = this.handleCommentUpdate.bind(this)
     this.handleCommentDelete = this.handleCommentDelete.bind(this)
     this.canModify = this.canModify.bind(this)
+    this.handleSaveProject = this.handleSaveProject.bind(this)
+    this.handleEditProject = this.handleEditProject.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
+    this.handleStatusChange = this.handleStatusChange.bind(this)
+    this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
   }
 
   componentDidMount() {
@@ -73,8 +81,61 @@ class ProjectDetails extends React.Component {
     return this.props.is_admin || this.props.current_user.id == comment.user.id
   }
 
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  handleActualEffortChanged(e) {
+    this.setState({
+      actual_effort: e.target.value
+    })
+  }
+
+  handleDescriptionChange(e) {
+    this.setState({
+      description: e.target.value
+    })
+  }
+
+  handleStatusChange(e) {
+    this.setState({
+      status: e.target.value
+    })
+  }
+
+  handleEditProject() {
+    this.setState({
+      editing: true
+    })
+  }
+
+  handleSaveProject() {
+    axios.patch(`/projects/${this.props.project.id}`, {
+      authenticity_token: this.props.form_token,
+      project: {
+        name: this.state.name,
+        description: this.state.description,
+        status: this.state.status,
+        actual_effort: this.state.actual_effort,
+      }
+    }).then((response) => {
+      if(response.errors) {
+        alert('some shit went wrong saving the project')
+        return
+      } else {
+        this.setState({
+          editing: false
+        })
+      }
+    })
+
+  }
+
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
+    const statuses = ['created', 'started', 'stopped', 'completed']
     return (
       <div className="">
 
@@ -83,23 +144,69 @@ class ProjectDetails extends React.Component {
 
             <div className="project-header">
 
-                <span className="project-name">{name}</span>
+                <div className="project-name">
+                {
+                  this.state.editing
+                    ? (
+                      <input
+                        type="text"
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
+                      />
+                      )
+                    : this.state.name
+                }
+                </div>
 
-                <span className="project-status">{status.toUpperCase()}</span>
+                <div className="project-status">
+                  {
+                    this.state.editing
+                      ? (
+                        <select
+                          onChange={this.handleStatusChange}
+                          value={this.state.status}
+                        >
+                        {
+                          statuses.map(status => <option value={status}>{status}</option>)
+                        }
+                        </select>
+                      )
+                      : <span className="status-label">{this.state.status.toUpperCase()}</span>
+                  }
+                </div>
+
+
+            </div>
+
+            <div className="project-subheader">
+
+                <div className="project-info">
+                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>&nbsp;
+                  <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
+                </div>
+
+                <div className="project-actions">
+                  { this.state.editing
+                      ? <button onClick={this.handleSaveProject}>Save changes</button>
+                      : <i className="fa fa-pencil-square-o comment-edit-btn" onClick={this.handleEditProject} aria-hidden="true"></i>
+                  }&nbsp;
+                  <i className="fa fa-trash comment-delete-btn" onClick={this.handleDeleteProject} aria-hidden="true"></i>
+                </div>
 
 
             </div>
 
 
             <div className="project-body">
-              <div>
-                <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>
-                <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
-              </div>
 
-              <div className="project-description-margin">
-                <div className="description-width">
-                <p className="project-description">{description}</p>
+              <div className="description-width">
+                <p className="project-description">{
+                  this.state.editing
+                    ? <textarea
+                        onChange={this.handleDescriptionChange}
+                      >{this.state.description}</textarea>
+                    : this.state.description
+                }</p>
                 </div>
                 <div className="effort-level-box">
                 <div className="es-effort-div text-center">
@@ -107,11 +214,21 @@ class ProjectDetails extends React.Component {
                 <span className="project-es-effort">{estimated_effort}</span>
                 </div>
                 <div className="ac-effort-div text-center">
+
                 <span className="effort-title">Actual level of effort</span>
-                <span className="project-ac-effort">{actual_effort ? actual_effort : estimated_effort}</span>
+                <span className="project-ac-effort">{
+                  this.state.editing && this.state.status === 'completed'
+                    ? (
+                      <input
+                        type='text'
+                        value={this.state.actual_effort}
+                        onChange={this.handleActualEffortChanged}
+                      />
+                    )
+                    : this.state.actual_effort ? this.state.actual_effort : '\u00A0'
+                }</span>
                 </div>
                 </div>
-              </div>
 
             </div>
           </div>

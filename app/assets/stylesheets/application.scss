@@ -104,82 +104,111 @@ body{
 
 
 .project-box{
+  box-sizing: border-box;
   margin: 0px 25px 20px 25px;
   //border: 2px solid red;
   box-shadow:  0 0 10px lightgray;
   border-radius: 5px;
+
+
+
   //margin-bottom: 20px;
-  .project-header {
+  .project-header, .project-subheader {
+
+    display: flex;
+    flex: 1;
     border-radius: 5px 5px 0 0;
     padding: 10px 20px;
     border-bottom: 1px solid #e1e8ee;
     background-color: white;
+    width: 100%;
 
-    .project-name{
-      vertical-align: middle;
+    .project-name {
       display: inline;
       font-size: 24px;
       font-weight: 600;
       color: #404140;
+      width: 50%;
 
     }
     .project-status{
-      vertical-align: middle;
-      display: inline;
-      float: right;
-      font-size: 12px;
-      border: 1px solid red;
-      color: red;
-      padding: 6px 8em 4px 8em;
-      margin: 3px 0px;
-      border-radius: 2px;
+      text-align: right;
+      width: 50%;
+
+      .status-label {
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid red;
+        color: red;
+        padding: 6px 8em 4px 8em;
+        margin: 3px 0px;
+        border-radius: 2px;
+      }
+
+
     }
 
   }
+
+  .project-subheader {
+    border: none;
+    border-radius: 0px;
+
+    .project-info {
+      display: inline;
+      color: #404140;
+      width: 50%;
+
+      .project-user,
+      .project-date{
+        margin-right: 12px;
+        margin-left: 6px;
+        color: #676166;
+        font-size: 12px;
+        text-decoration: underline;
+
+      }
+
+    }
+
+    .project-actions {
+      width: 50%;
+      text-align: right;
+    }
+  }
+
   .project-body{
     min-height: 170px;
     border-radius: 0 0 5px 5px;
     background-color: white;
-    padding: 15px 20px 30px 20px;
+    padding: 4px 20px 30px 20px;
 
-    .project-user,
-    .project-date{
-      margin-right: 12px;
-      margin-left: 6px;
-      color: #676166;
-      font-size: 12px;
-      text-decoration: underline;
 
-    }
+     .description-width{
 
-    .project-description-margin{
-      margin-top: 10px;
 
-    .description-width{
-      display: inline-block;
+        width: 55%;
+        .project-description{
+          display: inline;
+          font-size: 12px;
+        }
+      }
 
-      width: 55%;
-      .project-description{
-      display: inline;
-      font-size: 12px;
-
-    }
-    }
-
-    .effort-level-box{
-      background-color: #eff3f7;
-      display: inline-block;
-      float: right;
-      border-radius: 2px;
-      border: 1px solid #c9d6df;
-
-      .es-effort-div{
-
+      .effort-level-box{
+        background-color: #eff3f7;
         display: inline-block;
-        border-right: 1px solid #c9d6df;
-        padding: 15px;
-        //width: 9em;
-        width: 122px;
+        float: right;
+        border-radius: 2px;
+        border: 1px solid #c9d6df;
+
+        .es-effort-div{
+
+          display: inline-block;
+          border-right: 1px solid #c9d6df;
+          padding: 15px;
+          //width: 9em;
+          width: 122px;
+
         .effort-title{
           display: block;
           font-size: 12px;
@@ -207,15 +236,14 @@ body{
           color: #858d99;
         }
         .project-ac-effort{
-        display: block;
+          display: block;
           font-size: 20px;
           font-weight: 700;
           color: #858d99;
+        }
       }
-      }
-    }
-    }
   }
+}
 }
 
 
@@ -342,7 +370,7 @@ body{
 
   background-color: #f796a8;
   box-shadow:  0 0 10px lightgray;
-   border-radius: 5px;
+  border-radius: 5px;
 
   .comment-new-box{
     //position: relative;
@@ -398,21 +426,21 @@ body{
     .modify-comment-btns-div{
       display: inline-block;
       float: right;
-        .comment-edit-btn,
-        .comment-delete-btn{
+      .comment-edit-btn,
+      .comment-delete-btn{
 
-          color: #676166;
-          margin-left: 10px;
-          cursor: pointer;
-          &:hover{
-            color: white;
-          }
+        color: #676166;
+        margin-left: 10px;
+        cursor: pointer;
+        &:hover{
+          color: white;
+        }
       }
     }
 
     .comment-body{
-    margin: 10px 0px 0px 0px;
-    display: inline-block;
+      margin: 10px 0px 0px 0px;
+      display: inline-block;
 
     }
 

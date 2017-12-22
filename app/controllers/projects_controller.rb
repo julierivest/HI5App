@@ -42,9 +42,11 @@ end
     @project = user_projects.find(params[:id])
     authorize @project
     if @project.update_attributes(project_params)
-      redirect_to @project
+      render json: @project.as_json
     else
-      render 'edit'
+      render json: {
+        errors: @project.errors
+      }
     end
   end
 
@@ -59,7 +61,7 @@ private
 
   def project_params
     params.require(:project).permit(:name, :description,
-      :published, :status, :estimated_effort)
+      :published, :status, :estimated_effort, :actual_effort)
   end
 
   def user_projects

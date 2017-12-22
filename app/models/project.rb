@@ -8,7 +8,7 @@ class Project < ApplicationRecord
   validates :status, presence: true
 
   validates_inclusion_of :status, in: %w(created started stopped completed)
-  validates_inclusion_of :estimated_effort, in: %w(high medium low)
+  #validates_inclusion_of :estimated_effort, in: %w(high medium low)
 
   scope :published, -> {
     where("published_at IS NOT NULL")
