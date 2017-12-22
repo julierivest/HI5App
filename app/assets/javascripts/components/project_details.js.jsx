@@ -77,16 +77,15 @@ class ProjectDetails extends React.Component {
     const { id, user, name, description, status, estimated_effort, published, created_at, current_user } = this.props.project
     return (
       <div className="row">
-      <div className="col-xs-2"></div>
-        <div className="col-xs-8">
+
 
           <div className="project-box">
 
             <div className="project-header">
-              <div className="inline">
+              <div className="">
                 <span className="project-name">{name}</span>
 
-                <span className="project-status">{status}</span>
+                <span className="project-status">{status.toUpperCase()}</span>
               </div>
 
             </div>
@@ -94,19 +93,23 @@ class ProjectDetails extends React.Component {
 
             <div className="project-body">
               <div>
-                <span className="project-user">{user.email}</span>
-                <span className="project-date">{created_at}</span>
+                <i className="fa fa-user" aria-hidden="true"></i><span className="project-user"> {user.name ? user.name : user.email}</span>
+                <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date"> {created_at}</span>
               </div>
 
-              <div className="inline">
+              <div className="project-description-margin">
+                <div className="description-width">
                 <p className="project-description">{description}</p>
-              </div>
-
-
-
-              <div className="inline">
+                </div>
+                <div className="inline">
                 <span className="project-es-effort">{estimated_effort}</span>
+                <span className="project-es-effort">{estimated_effort}</span>
+                </div>
               </div>
+
+
+
+
 
 
             </div>
@@ -140,8 +143,7 @@ class ProjectDetails extends React.Component {
             </div>
           </div>
 
-        </div>
-      <div className="col-xs-2"></div>
+
       </div>
     )
   }

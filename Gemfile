@@ -26,6 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass'
 
+gem 'font-awesome-sass', '~> 4.7.0'
 gem "pundit"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
