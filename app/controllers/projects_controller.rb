@@ -3,15 +3,14 @@ class ProjectsController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @projects = Project.where(public: true)
+    @projects = Project.published
     authorize @projects
     @projects = @projects.order(created_at: :desc).include_user
 
   end
 
-
   def show
-    @project = Project.where(public: true).find(params[:id])
+    @project = Project.find(params[:id])
     authorize @project
     @project = @project.as_json(include: [:user, :comments])
   end
@@ -24,9 +23,8 @@ class ProjectsController < ApplicationController
   end
 
   def new
-
-  @project = user_projects.build
-  authorize @project
+    @project = user_projects.build
+    authorize @project
   end
 
 def create
@@ -61,7 +59,7 @@ private
 
   def project_params
     params.require(:project).permit(:name, :description,
-      :public, :status, :estimated_effort)
+      :published, :status, :estimated_effort)
   end
 
   def user_projects

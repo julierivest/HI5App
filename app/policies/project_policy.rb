@@ -13,7 +13,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    !(record.user != user && !record.published?)
   end
 
   def edit?

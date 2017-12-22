@@ -44,7 +44,7 @@ class ProjectListing extends React.Component {
             </div>
 
             <div className="inline">
-              <span className="project-public">{public ? "Public" : "Private"}</span>
+              <span className="project-public">{published ? "Published" : "UnPublished"}</span>
             </div>
           </div>
         </div>

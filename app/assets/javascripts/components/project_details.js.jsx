@@ -74,7 +74,7 @@ class ProjectDetails extends React.Component {
   }
 
   render () {
-    const { id, user, name, description, status, estimated_effort, public, created_at, current_user } = this.props.project
+    const { id, user, name, description, status, estimated_effort, published, created_at, current_user } = this.props.project
     return (
       <div className="row">
       <div className="col-xs-2"></div>
