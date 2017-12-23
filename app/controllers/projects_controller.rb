@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
     @projects = Project.published
     authorize @projects
     @projects = @projects.order(created_at: :desc).include_user
-
   end
 
   def show
@@ -18,7 +17,6 @@ class ProjectsController < ApplicationController
   def edit
     @project = user_projects.find(params[:id])
     @user = current_user
-
     authorize @project
   end
 
@@ -27,16 +25,15 @@ class ProjectsController < ApplicationController
     authorize @project
   end
 
-def create
-  @project = user_projects.new(project_params)
-
-  authorize @project
-  if @project.save
-    redirect_to @project
-  else
-    render 'new'
+  def create
+    @project = user_projects.new(project_params)
+    authorize @project
+    if @project.save
+      redirect_to @project
+    else
+      render 'new'
+    end
   end
-end
 
   def update
     @project = user_projects.find(params[:id])
@@ -64,11 +61,9 @@ end
         errors: @project.errors
       }
     end
-
-
   end
 
-private
+  private
 
   def project_params
     params.require(:project).permit(:name, :description,

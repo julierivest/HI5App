@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
-
   private
 
   def authorize_admin

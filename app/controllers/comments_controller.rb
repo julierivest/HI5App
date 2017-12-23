@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
 
-
   def index
     @comments = project.comments.
-      includes(:user).
-      order(created_at: :desc).
-      as_json(include: [:user])
+    includes(:user).
+    order(created_at: :desc).
+    as_json(include: [:user])
     render json: {
       comments: @comments
     }
   end
-
 
   def create
     @comment = project.comments.build(comment_params)
@@ -23,7 +21,7 @@ class CommentsController < ApplicationController
     end
   end
 
-   def update
+  def update
     @comment = project.comments.find(params[:id])
     if @comment.update(comment_params)
       render json: {
@@ -35,7 +33,6 @@ class CommentsController < ApplicationController
       }
     end
   end
-
 
   def destroy
     @comment = project.comments.find(params[:id])

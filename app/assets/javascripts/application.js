@@ -20,3 +20,4 @@
 //= require components
 //= require server_rendering
 //= require axios
+//= require moment

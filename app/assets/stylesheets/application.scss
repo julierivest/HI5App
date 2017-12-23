@@ -10,6 +10,28 @@ body{
 
 //#e1e8ee effort level background
 
+.sign-in-box{
+  background-color: white;
+  text-align: center;
+  border: 2px solid black;
+  padding: 0px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow:  0 0 10px lightgray;
+  .sign-in-title{
+  font-weight: 800;
+  }
+  div{
+    margin-bottom: 10px;
+    input#user_email, #user_password, #user_password_confirmation, #user_name {
+      width: 75%;
+    }
+  }
+.loginBtn--facebook{
+  margin-top: 15px;
+}
+}
+
+
 
 .loginBtn {
 

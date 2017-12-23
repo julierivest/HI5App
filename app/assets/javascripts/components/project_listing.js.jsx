@@ -10,15 +10,15 @@ class ProjectListing extends React.Component {
 
   statusColor(){
     console.log(this.state.status);
-    if (this.props.status === "Started") {
+    if (this.props.status === "started") {
       return (
           <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.props.status.toUpperCase()}</span>
         )
-    } else if (this.props.status === "Completed") {
+    } else if (this.props.status === "completed") {
       return(
           <span className="status-label" style={{color: 'green', borderColor: 'green'}}>{this.props.status.toUpperCase()}</span>
         )
-    } else if (this.props.status === "Stopped") {
+    } else if (this.props.status === "stopped") {
       return (
           <span className="status-label" style={{color: 'purple', borderColor: 'purple'}}>{this.props.status.toUpperCase()}</span>
         )
@@ -90,16 +90,3 @@ class ProjectListing extends React.Component {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

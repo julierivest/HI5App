@@ -110,7 +110,7 @@ class ProjectDetails extends React.Component {
   }
 
   handleStatusChange(e) {
-    if (e.target.value !== "Completed") {
+    if (e.target.value !== "completed") {
       this.setState({
         actual_effort: '\u00A0'
       })
@@ -130,15 +130,15 @@ class ProjectDetails extends React.Component {
 
   statusColor(){
     console.log(this.state.status);
-    if (this.state.status === "Started") {
+    if (this.state.status === "started") {
       return (
           <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.state.status.toUpperCase()}</span>
         )
-    } else if (this.state.status === "Completed") {
+    } else if (this.state.status === "completed") {
       return(
           <span className="status-label" style={{color: 'green', borderColor: 'green'}}>{this.state.status.toUpperCase()}</span>
         )
-    } else if (this.state.status === "Stopped") {
+    } else if (this.state.status === "stopped") {
       return (
           <span className="status-label" style={{color: 'purple', borderColor: 'purple'}}>{this.state.status.toUpperCase()}</span>
         )
@@ -188,7 +188,7 @@ class ProjectDetails extends React.Component {
 
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
-    const statuses = ['Created', 'Started', 'Stopped', 'Completed']
+    const statuses = ['created', 'started', 'stopped', 'completed']
     return (
       <div className="">
 
@@ -235,7 +235,7 @@ class ProjectDetails extends React.Component {
 
                 <div className="project-info">
                   <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>
-                  <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
+                  <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{moment(created_at).fromNow()}</span>
                 </div>
 
                 {this.canModifyProject() ?
@@ -271,7 +271,7 @@ class ProjectDetails extends React.Component {
 
                 <span className="effort-title">Actual level of effort</span>
                 <span className="project-ac-effort">{
-                  this.state.editing && this.state.status === 'Completed'
+                  this.state.editing && this.state.status === 'completed'
                     ? (
                       <input className="project-edit-ac-effort"
                         type='text'

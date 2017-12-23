@@ -2,9 +2,8 @@ class User < ApplicationRecord
   has_many :projects, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  #validates :name, presence: true, length: { minimum: 6 }
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  validates :name, presence: true, length: { minimum: 6 }
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :database_authenticatable, :omniauth_providers => [:facebook]

@@ -25,7 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass'
-
+gem 'momentjs-rails'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem "pundit"
 # Use CoffeeScript for .coffee assets and views

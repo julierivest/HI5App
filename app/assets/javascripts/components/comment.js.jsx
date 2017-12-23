@@ -35,14 +35,13 @@ class Comment extends React.Component {
       <div className="comment">
       <div>
         <i className="fa fa-user" aria-hidden="true"></i><span className="comment-user">{user.name ? user.name : user.email}</span>
-        <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{created_at}</span>
+        <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{moment(created_at).fromNow()}</span>
         {
           canModify
             ? (
               <div className="modify-comment-btns-div">
                 <i className="fa fa-pencil-square-o comment-edit-btn" onClick={this.editComment} aria-hidden="true"></i>
                 <i className="fa fa-trash comment-delete-btn" onClick={() => handleCommentDelete(id)} aria-hidden="true"></i>
-
               </div>
             )
             : null
@@ -62,7 +61,7 @@ class Comment extends React.Component {
 
         <form onSubmit={(e) => this.handleCommentUpdate(id, this.state.body)}>
           <i className="fa fa-user" aria-hidden="true"></i><span className="comment-user">{user.name ? user.name : user.email}</span>
-          <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{created_at}</span>
+          <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{moment(created_at).fromNow()}</span>
           <div className="">
           <textarea
             className="comment-textarea-edit"
