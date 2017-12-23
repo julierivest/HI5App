@@ -16,6 +16,7 @@ class ProjectDetails extends React.Component {
     this.handleCommentUpdate = this.handleCommentUpdate.bind(this)
     this.handleCommentDelete = this.handleCommentDelete.bind(this)
     this.canModify = this.canModify.bind(this)
+    this.canModifyProject = this.canModifyProject.bind(this)
     this.handleSaveProject = this.handleSaveProject.bind(this)
     this.handleEditProject = this.handleEditProject.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
@@ -23,6 +24,7 @@ class ProjectDetails extends React.Component {
     this.handleStatusChange = this.handleStatusChange.bind(this)
     this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
     this.handleDeleteProject = this.handleDeleteProject.bind(this)
+    this.statusColor = this.statusColor.bind(this)
   }
 
   componentDidMount() {
@@ -82,6 +84,11 @@ class ProjectDetails extends React.Component {
     return this.props.is_admin || this.props.current_user.id == comment.user.id
   }
 
+  canModifyProject(project) {
+
+    return this.props.is_admin || this.props.current_user.id == this.props.project.user.id
+  }
+
   handleNameChange(e) {
     this.setState({
       name: e.target.value
@@ -120,6 +127,29 @@ class ProjectDetails extends React.Component {
     })
   }
 
+
+  statusColor(){
+    console.log(this.state.status);
+    if (this.state.status === "Started") {
+      return (
+          <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.state.status.toUpperCase()}</span>
+        )
+    } else if (this.state.status === "Completed") {
+      return(
+          <span className="status-label" style={{color: 'green', borderColor: 'green'}}>{this.state.status.toUpperCase()}</span>
+        )
+    } else if (this.state.status === "Stopped") {
+      return (
+          <span className="status-label" style={{color: 'purple', borderColor: 'purple'}}>{this.state.status.toUpperCase()}</span>
+        )
+    } else {
+      return(
+      <span className="status-label" style={{color: 'orange', borderColor: 'orange'}}>{this.state.status.toUpperCase()}</span>
+      )
+    }
+  }
+
+
   handleSaveProject() {
     axios.patch(`/projects/${this.props.project.id}`, {
       authenticity_token: this.props.form_token,
@@ -141,10 +171,14 @@ class ProjectDetails extends React.Component {
     })
   }
 
+
+//FIX THIS SHIT
   handleDeleteProject(id) {
     console.log(id);
-    console.log("YO");
-    axios.delete(`/projects/${id}`).then((response) => {
+    console.log(this.props.form_token);
+    axios.delete(`/projects/${id}`, {
+      data: { authenticity_token: this.props.form_token }
+    }).then((response) => {
       alert('some shit went wrong saving the project')
 
     })
@@ -190,7 +224,7 @@ class ProjectDetails extends React.Component {
                         }
                         </select>
                       )
-                      : <span className="status-label">{this.state.status.toUpperCase()}</span>
+                      : this.statusColor()
                   }
                 </div>
 
@@ -204,17 +238,18 @@ class ProjectDetails extends React.Component {
                   <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
                 </div>
 
+                {this.canModifyProject() ?
                 <div className="project-actions">
+
                   { this.state.editing
                       ? <button className="project-update-btn" onClick={this.handleSaveProject}>Save</button>
                       : <i className="fa fa-pencil-square-o project-edit-btn" onClick={this.handleEditProject} aria-hidden="true"></i>
                   }
                   <i className="fa fa-trash project-delete-btn" onClick={() => this.handleDeleteProject(id)} aria-hidden="true"></i>
                 </div>
-
+                : null }
 
             </div>
-
 
             <div className="project-body">
 

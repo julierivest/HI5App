@@ -4,7 +4,29 @@ class ProjectListing extends React.Component {
     this.state = {
 
     }
+    this.statusColor = this.statusColor.bind(this)
+  }
 
+
+  statusColor(){
+    console.log(this.state.status);
+    if (this.props.status === "Started") {
+      return (
+          <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.props.status.toUpperCase()}</span>
+        )
+    } else if (this.props.status === "Completed") {
+      return(
+          <span className="status-label" style={{color: 'green', borderColor: 'green'}}>{this.props.status.toUpperCase()}</span>
+        )
+    } else if (this.props.status === "Stopped") {
+      return (
+          <span className="status-label" style={{color: 'purple', borderColor: 'purple'}}>{this.props.status.toUpperCase()}</span>
+        )
+    } else {
+      return(
+      <span className="status-label" style={{color: 'orange', borderColor: 'orange'}}>{this.props.status.toUpperCase()}</span>
+      )
+    }
   }
 
   render () {
@@ -23,7 +45,7 @@ class ProjectListing extends React.Component {
 
                 <div className="project-status">
 
-                  <span className="status-label">{status.toUpperCase()}</span>
+                  {this.statusColor()}
                 </div>
 
 

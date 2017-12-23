@@ -58,7 +58,7 @@ end
       render json: {
         status: :ok
       }
-      redirect_to projects_path
+      redirect_to :root
     else
       render json: {
         errors: @project.errors
