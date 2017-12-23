@@ -1,3 +1,98 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comments-section{
+  margin: 0px 25px 20px 25px;
+  background-color: #f796a8;
+  box-shadow:  0 0 10px lightgray;
+  border-radius: 5px;
+  .comment-new-box{
+    padding: 20px 30px;
+    .comment-textarea{
+      border: none;
+      display: inline;
+      padding: 2px 5px;
+      border-radius: 2px;
+      min-width: 82%;
+      min-height: 40px;
+      max-width: 90%;
+      margin-right: 20px;
+    }
+    .comment-submit-btn{
+      float: right;
+      border: 1px solid #fa0f3a;
+      display: inline;
+      background-color: #fa0f3a;
+      padding: 2px 10px;
+      border-radius: 3px;
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+      &:hover{
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  .comment{
+    border-top: 1px solid white;
+    padding: 15px 30px;
+    .comment-date,
+    .comment-user{
+      margin-right: 12px;
+      margin-left: 6px;
+      color: #676166;
+      font-size: 12px;
+      text-decoration: underline;
+    }
+    .modify-comment-btns-div{
+      display: inline-block;
+      float: right;
+      .comment-edit-btn,
+      .comment-delete-btn{
+        color: #676166;
+        margin-left: 10px;
+        cursor: pointer;
+        &:hover{
+          color: white;
+        }
+      }
+    }
+    .comment-body{
+      margin: 10px 0px 0px 0px;
+      display: inline-block;
+      font-size: 12px;
+    }
+    .comment-textarea-edit{
+      min-width: 82%;
+      min-height: 40px;
+      max-width: 90%;
+      font-size: 12px;
+      border: none;
+      border-radius: 2px;
+      display: inline;
+      padding: 2px 5px;
+      margin-top: 5px;
+    }
+    .comment-update-btn {
+      float: right;
+      background-color: #fa0f3a;
+      padding: 2px 10px;
+      border-radius: 3px;
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+      border: 1px solid #fa0f3a;
+      &:hover{
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :projects, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 6 }
+  validates :name, presence: true, length: { minimum: 5 }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -20,8 +20,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.encrypted_password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      # assuming the user model has an image
+      user.name = auth.info.name
     end
   end
 

@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HomeImp</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
+<head>
+  <title>HomeImp</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
   <%= render 'layouts/top_nav' %>
   <main class="container">
-    <%= yield %>
-  </main>
 
-  </body>
+    <%= yield %>
+
+  </main>
+</body>
 </html>

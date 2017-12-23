@@ -18,18 +18,15 @@ class ProjectPolicy < ApplicationPolicy
 
   def edit?
     record.user == user || user.admin?
-    #record.user_id == user.id
   end
 
 
   def update?
     record.user == user || user.admin?
-    #record.user_id == user.id
   end
 
   def destroy?
     record.user == user || user.admin?
-    #record.user_id == user.id || user.admin?
   end
 
   def include_comments?

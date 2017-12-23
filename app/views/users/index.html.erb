@@ -1,27 +1,26 @@
-<h1>All Users</h1>
-
+<h1>Users</h1>
 <% if @users.count > 0 %>
-
 <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Created on</th>
-        <th>Projects</th>
-      </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Created on</th>
+      <th>Projects</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
-        <td><%= user.email %></td>
-        <td><%= user.created_at %></td>
-        <td><%= user.projects.count %></td>
-      </tr>
+    <tr>
+      <td><%= link_to user.name, user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.projects.count %></td>
+    </tr>
     <% end %>
-
-    </tbody>
+  </tbody>
 </table>
+<% else %>
+<h4>There are no users yet.</h4>
 <% end %>
 

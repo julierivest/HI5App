@@ -3,13 +3,48 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+// Projects
+@import "projects";
+// Comments
+@import "comments";
+
 body{
   padding-top: 110px;
   background-color: #eff3f7;
 }
 
-//#e1e8ee effort level background
+// Navbar
+.navbar {
+  border-radius: 0px;
+  background-color: #093ac9;
+  border: none;
+  .navbar-brand{
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding-left: 20px;
+  }
+  li > a.nav-link{
+    color: white;
+    font-size: 12px;
+  }
+  #new-project-btn{
+    background-color: #fa0f3a;
+    color: white;
+    font-size: 12px;
+    padding: 8px 45px;
+    margin-left: 20px;
+  }
+  #sign-in-btn{
+    background-color: #073795;
+    color: white;
+    font-size: 12px;
+    padding: 8px 20px;
+    margin-right: 20px;
+  }
+}
 
+// Sign in/up pages
 .sign-in-box{
   background-color: white;
   text-align: center;
@@ -18,7 +53,7 @@ body{
   border-radius: 10px;
   box-shadow:  0 0 10px lightgray;
   .sign-in-title{
-  font-weight: 800;
+    font-weight: 800;
   }
   div{
     margin-bottom: 10px;
@@ -26,18 +61,15 @@ body{
       width: 75%;
     }
   }
-.loginBtn--facebook{
-  margin-top: 15px;
+  .loginBtn--facebook{
+    margin-top: 15px;
+  }
 }
-}
 
-
-
+// facebook login styles
 .loginBtn {
-
   box-sizing: border-box;
   position: relative;
-  /* width: 13em;  - apply for fixed size */
   margin: 0.2em;
   padding: 0 15px 0 46px;
   border: none;
@@ -51,7 +83,6 @@ body{
     color: white;
   }
 }
-
 .loginBtn:before {
   content: "";
   box-sizing: border-box;
@@ -68,14 +99,10 @@ body{
   box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
 }
 
-
-/* Facebook */
 .loginBtn--facebook {
   background-color: #4C69BA;
   background-image: linear-gradient(#4C69BA, #3B55A0);
-  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
   text-shadow: 0 -1px 0 #354C8C;
-
 }
 
 .loginBtn--facebook:before {
@@ -87,463 +114,4 @@ body{
   background-color: #5B7BD5;
   background-image: linear-gradient(#5B7BD5, #4864B1);
 }
-
-/////////////////////
-
-.navbar {
-  border-radius: 0px;
-  background-color: #093ac9;
-  border: none;
-  .navbar-brand{
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
-    padding-left: 20px;
-  }
-  li > a.nav-link{
-    color: white;
-    font-size: 12px;
-    //padding-top: 26px;
-    //padding-bottom: 26px;
-  }
-  #new-project-btn{
-    background-color: #fa0f3a;
-    color: white;
-    font-size: 12px;
-    padding: 8px 45px;
-    margin-left: 20px;
-
-  }
-  #sign-in-btn{
-    background-color: #073795;
-    color: white;
-    font-size: 12px;
-    padding: 8px 20px;
-    margin-right: 20px;
-  }
-}
-
-
-
-.project-box{
-  box-sizing: border-box;
-  margin: 0px 25px 20px 25px;
-  //border: 2px solid red;
-  box-shadow:  0 0 10px lightgray;
-  border-radius: 5px;
-
-
-
-  //margin-bottom: 20px;
-  .project-header, .project-subheader {
-
-    display: flex;
-    flex: 1;
-    border-radius: 5px 5px 0 0;
-    padding: 15px 20px 10px 20px;
-    border-bottom: 1px solid #e1e8ee;
-    background-color: white;
-    width: 100%;
-
-    .project-name {
-      display: inline;
-      font-size: 24px;
-      font-weight: 600;
-      color: #404140;
-      width: 50%;
-      .project-edit-name{
-        padding: 0px 5px;
-        //border-radius: 3px;
-        width: 100%;
-        //border: 1px solid black;
-
-      }
-    }
-    .project-status{
-      text-align: right;
-      width: 50%;
-
-      .status-label {
-        display: inline-block;
-        font-size: 12px;
-        border: 1px solid red;
-        color: red;
-        padding: 6px 8em 4px 8em;
-        margin: 3px 0px;
-        border-radius: 2px;
-      }
-      .project-edit-status{
-        display: inline-block;
-        margin: 9px 0px 8px 0px;
-      }
-
-    }
-
-  }
-
-  .project-subheader {
-    border: none;
-    border-radius: 0px;
-
-    .project-info {
-      display: inline;
-      color: #404140;
-      width: 50%;
-
-      .project-user,
-      .project-date{
-        margin-right: 12px;
-        margin-left: 6px;
-        color: #676166;
-        font-size: 12px;
-        text-decoration: underline;
-      }
-    }
-
-    .project-actions {
-      width: 50%;
-      text-align: right;
-      .project-edit-btn,
-      .project-delete-btn{
-        color: #676166;
-        margin-left: 10px;
-        cursor: pointer;
-        &:hover{
-          color: black;
-        }
-      }
-      .project-update-btn{
-        border: 1px solid #fa0f3a;
-
-      background-color: #fa0f3a;
-      padding: 2px 10px;
-      border-radius: 3px;
-      color: white;
-      font-size: 12px;
-      font-weight: 400;
-      }
-
-    }
-  }
-
-  .project-body{
-    min-height: 150px;
-    border-radius: 0 0 5px 5px;
-    background-color: white;
-    padding: 4px 20px 30px 20px;
-
-
-     .description-width{
-        display: inline-block;
-
-        width: 55%;
-        .project-description{
-          display: inline;
-          font-size: 12px;
-          .project-edit-description{
-            padding: 2px 5px;
-            border-radius: 2px;
-            width: 100%;
-            height: 112px;
-            font-size: 12px;
-          }
-        }
-      }
-
-      .effort-level-box{
-        background-color: #eff3f7;
-        display: inline-block;
-        float: right;
-        border-radius: 2px;
-        border: 1px solid #c9d6df;
-
-        .es-effort-div{
-
-          display: inline-block;
-          border-right: 1px solid #c9d6df;
-          padding: 15px;
-          //width: 9em;
-          width: 122px;
-
-        .effort-title{
-          display: block;
-          font-size: 12px;
-          font-weight: 600;
-          color: #858d99;
-
-
-        }
-        .project-es-effort{
-          display: block;
-          font-size: 34px;
-          font-weight: 700;
-          color: #858d99;
-        }
-      }
-      .ac-effort-div{
-        //width: 9em;
-        padding: 15px;
-        width: 122px;
-        display: inline-block;
-        .effort-title{
-          display: block;
-          font-size: 12px;
-          font-weight: 600;
-          color: #858d99;
-        }
-        .project-ac-effort{
-          display: block;
-          font-size: 34px;
-          font-weight: 700;
-          color: green;
-          .project-edit-ac-effort{
-            width: 50px;
-            color: black;
-            font-size: 24px;
-            padding: 0px 5px;
-          }
-        }
-      }
-  }
-}
-}
-
-
-
-.comments-section{
-
-  margin: 0px 25px 20px 25px;
-
-  background-color: #f796a8;
-  box-shadow:  0 0 10px lightgray;
-  border-radius: 5px;
-
-  .comment-new-box{
-    //position: relative;
-
-    padding: 20px 30px;
-    .comment-textarea{
-      border: none;
-
-      display: inline;
-      padding: 2px 5px;
-      border-radius: 2px;
-      min-width: 82%;
-      min-height: 40px;
-      max-width: 90%;
-      margin-right: 20px;
-    }
-    .comment-submit-btn{
-      float: right;
-      border: 1px solid #fa0f3a;
-      display: inline;
-      background-color: #fa0f3a;
-      padding: 2px 10px;
-      border-radius: 3px;
-      color: white;
-      font-size: 12px;
-      font-weight: 400;
-
-
-      &:hover{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
-      &:focus{
-        outline: none;
-      }
-    }
-  }
-  .comment{
-    border-top: 1px solid white;
-    padding: 15px 30px;
-
-    .comment-date,
-    .comment-user{
-      margin-right: 12px;
-      margin-left: 6px;
-      color: #676166;
-      font-size: 12px;
-      text-decoration: underline;
-    }
-
-
-    .modify-comment-btns-div{
-      display: inline-block;
-      float: right;
-      .comment-edit-btn,
-      .comment-delete-btn{
-
-        color: #676166;
-        margin-left: 10px;
-        cursor: pointer;
-        &:hover{
-          color: white;
-        }
-      }
-    }
-
-    .comment-body{
-      margin: 10px 0px 0px 0px;
-      display: inline-block;
-      font-size: 12px;
-    }
-
-    .comment-textarea-edit{
-      min-width: 82%;
-      min-height: 40px;
-      max-width: 90%;
-      font-size: 12px;
-      border: none;
-      border-radius: 2px;
-      display: inline;
-      padding: 2px 5px;
-      //display: inline;
-      margin-top: 5px;
-    }
-
-
-
-    .comment-update-btn {
-
-      float: right;
-
-      background-color: #fa0f3a;
-      padding: 2px 10px;
-      border-radius: 3px;
-      color: white;
-      font-size: 12px;
-      font-weight: 400;
-      border: 1px solid #fa0f3a;
-      &:hover{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
-      &:focus{
-        outline: none;
-      }
-    }
-  }
-}
-
-
-/*
-
-
-
-.project-box{
-  border: 2px solid red;
-  .project-header {
-    padding: 20px;
-    border-bottom: 2px solid red;
-    background-color: #ff5151;
-    .project-name{
-      font-size: 24px;
-      font-weight: 700;
-      color: white;
-    }
-
-    .project-user{
-      color: #8500bf;
-      font-size: 16px;
-      display: inline-block;
-    }
-    .project-date{
-      float: right;
-      display: inline-block;
-    }
-  }
-  .project-body{
-    padding: 20px;
-    .inline{
-      display: inline-block;
-      margin-right: 15px;
-    }
-  }
-}
-
-.comments-section{
-  padding: 20px 30px;
-  background-color: #ff9b9b;
-
-  .comment-new-box{
-    position: relative;
-
-    .comment-textarea{
-
-      display: inline;
-
-      min-width: 75%;
-      min-height: 40px;
-      max-width: 85%;
-      margin-right: 20px;
-    }
-    .comment-submit-btn{
-      position: absolute;
-      top: 0;
-      display: inline;
-      background-color: red;
-      padding: 2px 6px;
-      border-radius: 6px;
-      color: white;
-      font-weight: 400;
-      border: red;
-      &:hover{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
-      &:focus{
-        outline: none;
-      }
-    }
-  }
-  .comment{
-    position: relative;
-    .comment-user {
-      color: #8500bf;
-      display: inline-block;
-    }
-    .comment-body{
-    margin: 10px;
-    }
-    .comment-date{
-      display: inline-block;
-      float: right;
-    }
-    .comment-textarea-edit{
-      width: 75%;
-    }
-
-    .comment-edit-btn, .comment-update-btn {
-
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      background-color: red;
-      padding: 2px 6px;
-      border-radius: 6px;
-      color: white;
-      font-weight: 400;
-      border: red;
-      &:hover{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
-      &:focus{
-        outline: none;
-      }
-    }
-  }
-}
-
-
-
-
-
-*/
-
 

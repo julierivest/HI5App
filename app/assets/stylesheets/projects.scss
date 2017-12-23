@@ -1,3 +1,153 @@
-// Place all the styles related to the Projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.project-box{
+  box-sizing: border-box;
+  margin: 0px 25px 20px 25px;
+  box-shadow:  0 0 10px lightgray;
+  border-radius: 5px;
+  .project-header, .project-subheader {
+    display: flex;
+    flex: 1;
+    border-radius: 5px 5px 0 0;
+    padding: 15px 20px 10px 20px;
+    border-bottom: 1px solid #e1e8ee;
+    background-color: white;
+    width: 100%;
+    .project-name {
+      display: inline;
+      font-size: 24px;
+      font-weight: 600;
+      color: #404140;
+      width: 50%;
+      .project-edit-name{
+        padding: 0px 5px;
+        width: 100%;
+      }
+    }
+    .project-status{
+      text-align: right;
+      width: 50%;
+      .status-label {
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid red;
+        color: red;
+        padding: 6px 8em 4px 8em;
+        margin: 3px 0px;
+        border-radius: 2px;
+      }
+      .project-edit-status{
+        display: inline-block;
+        margin: 9px 0px 8px 0px;
+      }
+    }
+  }
+  .project-subheader {
+    border: none;
+    border-radius: 0px;
+    .project-info {
+      display: inline;
+      color: #404140;
+      width: 50%;
+      .project-user,
+      .project-date{
+        margin-right: 12px;
+        margin-left: 6px;
+        color: #676166;
+        font-size: 12px;
+        text-decoration: underline;
+      }
+    }
+    .project-actions {
+      width: 50%;
+      text-align: right;
+      .project-edit-btn,
+      .project-delete-btn{
+        color: #676166;
+        margin-left: 10px;
+        cursor: pointer;
+        &:hover{
+          color: black;
+        }
+      }
+      .project-update-btn{
+        border: 1px solid #fa0f3a;
+
+      background-color: #fa0f3a;
+      padding: 2px 10px;
+      border-radius: 3px;
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+      }
+    }
+  }
+  .project-body{
+    min-height: 150px;
+    border-radius: 0 0 5px 5px;
+    background-color: white;
+    padding: 4px 20px 30px 20px;
+     .description-width{
+        display: inline-block;
+        width: 55%;
+        .project-description{
+          display: inline;
+          font-size: 12px;
+          .project-edit-description{
+            padding: 2px 5px;
+            border-radius: 2px;
+            width: 100%;
+            height: 112px;
+            font-size: 12px;
+          }
+        }
+      }
+      .effort-level-box{
+        background-color: #eff3f7;
+        display: inline-block;
+        float: right;
+        border-radius: 2px;
+        border: 1px solid #c9d6df;
+        .es-effort-div{
+          display: inline-block;
+          border-right: 1px solid #c9d6df;
+          padding: 15px;
+          width: 122px;
+        .effort-title{
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          color: #858d99;
+        }
+        .project-es-effort{
+          display: block;
+          font-size: 34px;
+          font-weight: 700;
+          color: #858d99;
+        }
+      }
+      .ac-effort-div{
+        //width: 9em;
+        padding: 15px;
+        width: 122px;
+        display: inline-block;
+        .effort-title{
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          color: #858d99;
+        }
+        .project-ac-effort{
+          display: block;
+          font-size: 34px;
+          font-weight: 700;
+          color: green;
+          .project-edit-ac-effort{
+            width: 50px;
+            color: black;
+            font-size: 24px;
+            padding: 0px 5px;
+          }
+        }
+      }
+    }
+  }
+}

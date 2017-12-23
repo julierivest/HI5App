@@ -9,7 +9,6 @@ class ProjectDetails extends React.Component {
       editing: false,
       ...props.project,
     }
-
     this.handleCommentChanged = this.handleCommentChanged.bind(this)
     this.handleCommentSubmit  = this.handleCommentSubmit.bind(this)
     this.loadComments = this.loadComments.bind(this)
@@ -96,11 +95,9 @@ class ProjectDetails extends React.Component {
   }
 
   handleActualEffortChanged(e) {
-
     this.setState({
       actual_effort: e.target.value
     })
-
   }
 
   handleDescriptionChange(e) {
@@ -115,7 +112,6 @@ class ProjectDetails extends React.Component {
         actual_effort: '\u00A0'
       })
     }
-
     this.setState({
       status: e.target.value
     })
@@ -127,9 +123,7 @@ class ProjectDetails extends React.Component {
     })
   }
 
-
   statusColor(){
-    console.log(this.state.status);
     if (this.state.status === "started") {
       return (
           <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.state.status.toUpperCase()}</span>
@@ -148,7 +142,6 @@ class ProjectDetails extends React.Component {
       )
     }
   }
-
 
   handleSaveProject() {
     axios.patch(`/projects/${this.props.project.id}`, {
@@ -171,11 +164,10 @@ class ProjectDetails extends React.Component {
     })
   }
 
-
-//FIX THIS SHIT
+//FIX!!!!!
   handleDeleteProject(id) {
-    console.log(id);
-    console.log(this.props.form_token);
+    //console.log(id);
+    //console.log(this.props.form_token);
     axios.delete(`/projects/${id}`, {
       data: { authenticity_token: this.props.form_token }
     }).then((response) => {
@@ -184,95 +176,75 @@ class ProjectDetails extends React.Component {
     })
   }
 
-
-
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
     const statuses = ['created', 'started', 'stopped', 'completed']
     return (
       <div className="">
-
-
-          <div className="project-box">
-
-            <div className="project-header">
-
-                <div className="project-name">
-                {
-                  this.state.editing
-                    ? (
-                      <input className="project-edit-name"
-                        type="text"
-                        value={this.state.name}
-                        onChange={this.handleNameChange}
-                      />
-                      )
-                    : this.state.name
-                }
-                </div>
-
-                <div className="project-status">
-                  {
-                    this.state.editing
-                      ? (
-                        <select className="project-edit-status"
-                          onChange={this.handleStatusChange}
-                          value={this.state.status}
-                        >
+        <div className="project-box">
+          <div className="project-header">
+            <div className="project-name">
+              {
+                this.state.editing ?
+                  ( <input className="project-edit-name"
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.handleNameChange} />
+                  )
+                : this.state.name
+              }
+            </div>
+            <div className="project-status">
+              {
+                this.state.editing ?
+                  ( <select className="project-edit-status"
+                    onChange={this.handleStatusChange}
+                    value={this.state.status} >
                         {
                           statuses.map(status => <option value={status}>{status}</option>)
                         }
-                        </select>
-                      )
-                      : this.statusColor()
-                  }
-                </div>
-
-
+                    </select>
+                  )
+                  : this.statusColor()
+              }
             </div>
-
-            <div className="project-subheader">
-
-                <div className="project-info">
-                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>
-                  <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{moment(created_at).fromNow()}</span>
-                </div>
-
-                {this.canModifyProject() ?
-                <div className="project-actions">
-
-                  { this.state.editing
-                      ? <button className="project-update-btn" onClick={this.handleSaveProject}>Save</button>
-                      : <i className="fa fa-pencil-square-o project-edit-btn" onClick={this.handleEditProject} aria-hidden="true"></i>
-                  }
+          </div>
+          <div className="project-subheader">
+            <div className="project-info">
+              <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>
+              <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{moment(created_at).fromNow()}</span>
+            </div>
+            {this.canModifyProject() ?
+              <div className="project-actions">
+                { this.state.editing ?
+                  <button className="project-update-btn" onClick={this.handleSaveProject}>Save</button>
+                : <i className="fa fa-pencil-square-o project-edit-btn" onClick={this.handleEditProject} aria-hidden="true"></i>
+                }
                   <i className="fa fa-trash project-delete-btn" onClick={() => this.handleDeleteProject(id)} aria-hidden="true"></i>
-                </div>
-                : null }
-
+              </div>
+            : null }
             </div>
-
             <div className="project-body">
-
               <div className="description-width">
                 <p className="project-description">{
-                  this.state.editing
-                    ? <textarea className="project-edit-description"
+                  this.state.editing ?
+                    <textarea className="project-edit-description"
                         onChange={this.handleDescriptionChange}
                       >{this.state.description}</textarea>
                     : this.state.description
-                }</p>
+                  }
+                </p>
               </div>
               <div className="effort-level-box">
                 <div className="es-effort-div text-center">
-                <span className="effort-title">Estimated level of effort</span>
-                <span className="project-es-effort">{estimated_effort}</span>
+                  <span className="effort-title">Estimated level of effort</span>
+                  <span className="project-es-effort">{estimated_effort}</span>
                 </div>
                 <div className="ac-effort-div text-center">
-
-                <span className="effort-title">Actual level of effort</span>
-                <span className="project-ac-effort">{
-                  this.state.editing && this.state.status === 'completed'
-                    ? (
+                  <span className="effort-title">Actual level of effort</span>
+                  <span className="project-ac-effort">{
+                    this.state.editing && this.state.status === 'completed' ?
+                    (
                       <input className="project-edit-ac-effort"
                         type='text'
                         value={this.state.actual_effort}
@@ -280,13 +252,12 @@ class ProjectDetails extends React.Component {
                       />
                     )
                     : this.state.actual_effort ? this.state.actual_effort : '\u00A0'
-                }</span>
+                  }
+                  </span>
                 </div>
-                </div>
-
+              </div>
             </div>
           </div>
-
           <div className="comments-section">
             <CommentForm
               project_id={id}
@@ -294,28 +265,24 @@ class ProjectDetails extends React.Component {
               handleCommentChanged={this.handleCommentChanged}
               value={this.state.comment}
               form_token={this.props.form_token}
-            />
-
-            <div>
-              {
-                this.state.comments_loading
-                  ? null
-                  : this.state.comments.map((comment) => {
-                      return <Comment
-                        key={comment.id}
-                        {...comment}
-                        handleCommentUpdate={this.handleCommentUpdate}
-                        editing={false}
-                        canModify={this.canModify(comment)}
-                        handleCommentDelete={this.handleCommentDelete()}
-                      />
-                  })
-
-              }
-            </div>
+          />
+          <div>
+            {
+              this.state.comments_loading ?
+                null
+              : this.state.comments.map((comment) => {
+                return <Comment
+                  key={comment.id}
+                  {...comment}
+                  handleCommentUpdate={this.handleCommentUpdate}
+                  editing={false}
+                  canModify={this.canModify(comment)}
+                  handleCommentDelete={this.handleCommentDelete()}
+                />
+              })
+            }
           </div>
-
-
+        </div>
       </div>
     )
   }

@@ -19,7 +19,7 @@ class UserPolicy < ApplicationPolicy
 
   def destroy?
 
-    record == user
+    record == user || user.admin?
   end
 
   def edit?
@@ -33,11 +33,7 @@ class UserPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      #if user.admin?
-       # scope.all
-      #else
-       # scope.where(id: user.id)
-      #end
+      scope
     end
   end
 end

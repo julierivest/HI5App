@@ -2,13 +2,13 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 6 }
-  validates :description, presence: true, length: { minimum: 6 }
+  validates :name, presence: true, length: { minimum: 5 }
+  validates :description, presence: true, length: { minimum: 5 }
   validates :estimated_effort, presence: true
   validates :status, presence: true
 
   validates_inclusion_of :status, in: %w(created started stopped completed)
-  #validates_inclusion_of :estimated_effort, in: %w(high medium low)
+  #validates_inclusion_of :estimated_effort, in: %w(1 2 3 4 5 6 7 8 9 10)
 
   scope :published, -> {
     where("published_at IS NOT NULL")

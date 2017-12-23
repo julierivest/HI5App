@@ -18,17 +18,14 @@ class CommentPolicy < ApplicationPolicy
 
   def edit?
     record.user == user
-    #record.user_id == user.id
   end
 
   def update?
     record.user == user
-    #record.user_id == user.id
   end
 
   def destroy?
     record.user == user || user.admin?
-    #record.user_id == user.id || user.admin?
   end
 
   class Scope < Scope

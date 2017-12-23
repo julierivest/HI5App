@@ -1,41 +1,32 @@
 <%= form_for @project do |form| %>
 
-<% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@project.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @project.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+  <% if @project.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@project.errors.count, "error") %> prohibited
+      this article from being saved:
+    </h2>
+    <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+  <div class="form-group form-name">
+    <%= form.label :name, "Name:" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </p>
+  <div class="form-group form-description">
+    <%= form.label :description, "Description:" %>
+    <%= form.text_area :description, class: 'form-control', rows: '5' %>
+  </div>
 
-  <p>
-    <%= form.radio_button :estimated_effort, 'low', :checked => true %>
-    <%= form.label :estimated_effort, 'Low', :value => 'low' %>
-    <%= form.radio_button :estimated_effort, 'medium' %>
-    <%= form.label :estimated_effort, 'Medium', :value => 'medium' %>
-    <%= form.radio_button :estimated_effort, 'high' %>
-    <%= form.label :estimated_effort, 'High', :value => 'high' %>
-
-  </p>
-
-  <p>
-    <%= form.radio_button :status, 'created', :checked => true %>
+  <label>Project status: </label>
+  <div class="form-group form-status">
+    <%= form.radio_button :status, 'created' %>
     <%= form.label :status, 'Created', :value => 'created' %>
     <%= form.radio_button :status, 'started' %>
     <%= form.label :status, 'Started', :value => 'started' %>
@@ -43,17 +34,23 @@
     <%= form.label :status, 'Stopped', :value => 'stopped' %>
     <%= form.radio_button :status, 'completed' %>
     <%= form.label :status, 'Completed', :value => 'completed' %>
-  </p>
+  </div>
 
-  <p>
+  <label>Estimated level of effort: </label>
+  <div class="form-group form-es-level">
 
+    <%= form.select :estimated_effort, options_for_select([[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]) %>
+  </div>
+
+  <div class="form-group form-published">
+    <label>Check box to make project public: </label>
     <%= form.check_box :published %>
-    <%= form.label :published %>
+  </div>
 
-  </p>
-
-  <p>
+  <div class="text-center">
     <%= form.submit %>
-  </p>
+  </div>
 
 <% end %>
+
+

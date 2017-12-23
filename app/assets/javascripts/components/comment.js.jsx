@@ -24,7 +24,6 @@ class Comment extends React.Component {
   }
 
   handleCommentUpdate(id, body) {
-    // delegation or wrapping or proxy method
     this.props.handleCommentUpdate(id, this.state.body)
     this.setState({editing: false})
   }
@@ -46,7 +45,6 @@ class Comment extends React.Component {
             )
             : null
         }
-
       </div>
 
           <p className="comment-body">{body}</p>
@@ -58,7 +56,6 @@ class Comment extends React.Component {
     const { id, body, user, created_at } = this.props
     return (
       <div className="comment">
-
         <form onSubmit={(e) => this.handleCommentUpdate(id, this.state.body)}>
           <i className="fa fa-user" aria-hidden="true"></i><span className="comment-user">{user.name ? user.name : user.email}</span>
           <i className="fa fa-clock-o" aria-hidden="true"></i><span className="comment-date">{moment(created_at).fromNow()}</span>
@@ -71,7 +68,6 @@ class Comment extends React.Component {
           <button className="comment-update-btn" type="submit" onClick={(e) => this.handleCommentUpdate(id, this.state.body)}>Update</button>
           </div>
         </form>
-
       </div>
     )
   }
@@ -81,5 +77,4 @@ class Comment extends React.Component {
       ? this.renderEditForm()
       : this.renderComment()
   }
-
 }

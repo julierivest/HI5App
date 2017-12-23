@@ -10,7 +10,7 @@ if Rails.env.development?
   user_2 = User.create! name: name, email: email, password: email, password_confirmation: email, admin: false
 
   name = "Admin"
-  email = admin = 'admin@hiapp.com'
+  email = admin = 'admin@hi.com'
   user_3 = User.create! name: name, email: email, password: email, password_confirmation: email, admin: true
 
   proj_1 = user_1.projects.create! name: "User 1 project 1", description: "Some awesome project for user 1",
