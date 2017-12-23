@@ -52,10 +52,21 @@ end
 
   def destroy
     @project = user_projects.find(params[:id])
-    @project.destroy
     authorize @project
-    redirect_to projects_path
+
+    if @project.destroy
+      render json: {
+        status: :ok
+      }
+      redirect_to projects_path
+    else
+      render json: {
+        errors: @project.errors
+      }
     end
+
+
+  end
 
 private
 

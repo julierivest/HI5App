@@ -22,6 +22,7 @@ class ProjectDetails extends React.Component {
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
     this.handleStatusChange = this.handleStatusChange.bind(this)
     this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
+    this.handleDeleteProject = this.handleDeleteProject.bind(this)
   }
 
   componentDidMount() {
@@ -88,9 +89,11 @@ class ProjectDetails extends React.Component {
   }
 
   handleActualEffortChanged(e) {
+
     this.setState({
       actual_effort: e.target.value
     })
+
   }
 
   handleDescriptionChange(e) {
@@ -100,6 +103,12 @@ class ProjectDetails extends React.Component {
   }
 
   handleStatusChange(e) {
+    if (e.target.value !== "Completed") {
+      this.setState({
+        actual_effort: '\u00A0'
+      })
+    }
+
     this.setState({
       status: e.target.value
     })
@@ -130,12 +139,22 @@ class ProjectDetails extends React.Component {
         })
       }
     })
-
   }
+
+  handleDeleteProject(id) {
+    console.log(id);
+    console.log("YO");
+    axios.delete(`/projects/${id}`).then((response) => {
+      alert('some shit went wrong saving the project')
+
+    })
+  }
+
+
 
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
-    const statuses = ['created', 'started', 'stopped', 'completed']
+    const statuses = ['Created', 'Started', 'Stopped', 'Completed']
     return (
       <div className="">
 
@@ -148,7 +167,7 @@ class ProjectDetails extends React.Component {
                 {
                   this.state.editing
                     ? (
-                      <input
+                      <input className="project-edit-name"
                         type="text"
                         value={this.state.name}
                         onChange={this.handleNameChange}
@@ -162,7 +181,7 @@ class ProjectDetails extends React.Component {
                   {
                     this.state.editing
                       ? (
-                        <select
+                        <select className="project-edit-status"
                           onChange={this.handleStatusChange}
                           value={this.state.status}
                         >
@@ -181,16 +200,16 @@ class ProjectDetails extends React.Component {
             <div className="project-subheader">
 
                 <div className="project-info">
-                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>&nbsp;
+                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>
                   <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
                 </div>
 
                 <div className="project-actions">
                   { this.state.editing
-                      ? <button onClick={this.handleSaveProject}>Save changes</button>
-                      : <i className="fa fa-pencil-square-o comment-edit-btn" onClick={this.handleEditProject} aria-hidden="true"></i>
-                  }&nbsp;
-                  <i className="fa fa-trash comment-delete-btn" onClick={this.handleDeleteProject} aria-hidden="true"></i>
+                      ? <button className="project-update-btn" onClick={this.handleSaveProject}>Save</button>
+                      : <i className="fa fa-pencil-square-o project-edit-btn" onClick={this.handleEditProject} aria-hidden="true"></i>
+                  }
+                  <i className="fa fa-trash project-delete-btn" onClick={() => this.handleDeleteProject(id)} aria-hidden="true"></i>
                 </div>
 
 
@@ -202,13 +221,13 @@ class ProjectDetails extends React.Component {
               <div className="description-width">
                 <p className="project-description">{
                   this.state.editing
-                    ? <textarea
+                    ? <textarea className="project-edit-description"
                         onChange={this.handleDescriptionChange}
                       >{this.state.description}</textarea>
                     : this.state.description
                 }</p>
-                </div>
-                <div className="effort-level-box">
+              </div>
+              <div className="effort-level-box">
                 <div className="es-effort-div text-center">
                 <span className="effort-title">Estimated level of effort</span>
                 <span className="project-es-effort">{estimated_effort}</span>
@@ -217,9 +236,9 @@ class ProjectDetails extends React.Component {
 
                 <span className="effort-title">Actual level of effort</span>
                 <span className="project-ac-effort">{
-                  this.state.editing && this.state.status === 'completed'
+                  this.state.editing && this.state.status === 'Completed'
                     ? (
-                      <input
+                      <input className="project-edit-ac-effort"
                         type='text'
                         value={this.state.actual_effort}
                         onChange={this.handleActualEffortChanged}
@@ -253,7 +272,7 @@ class ProjectDetails extends React.Component {
                         handleCommentUpdate={this.handleCommentUpdate}
                         editing={false}
                         canModify={this.canModify(comment)}
-                        handleCommentDelete={this.handleCommentDelete}
+                        handleCommentDelete={this.handleCommentDelete()}
                       />
                   })
 
