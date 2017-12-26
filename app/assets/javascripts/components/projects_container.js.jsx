@@ -10,7 +10,7 @@ var ProjectsContainer = createReactClass({
                   return <ProjectListing key={project.id} {...project} />
                 })
               )
-              : "You have no projects"
+              : <span id="no-projects-notice">You have no projects</span>
           }
         </div>
     );

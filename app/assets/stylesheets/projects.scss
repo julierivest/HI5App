@@ -3,6 +3,10 @@ $button-red: #fa0f3a;
 $icon-grey: #676166;
 $font-12: 12px;
 
+#no-projects-notice{
+  font-size: 22px;
+  color: $icon-grey;
+}
 .project-box{
   box-sizing: border-box;
   margin: 0px 25px 20px 25px;
