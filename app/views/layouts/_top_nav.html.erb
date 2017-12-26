@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav">
         <% if current_user %>
         <li><%= link_to 'HOME', projects_path, :class => "nav-link" %></li>
-        <li><%= link_to "MY PROJECTS", profile_path(current_user.id), :class => "nav-link" %></li>
+        <li><%= link_to "MY PROJECTS", profile_path, :class => "nav-link" %></li>
         <% if current_user.admin && false %>
         <li><%= link_to "USERS", users_path, :class => "nav-link" %></li>
         <% end %>

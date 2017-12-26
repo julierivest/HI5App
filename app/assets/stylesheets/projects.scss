@@ -8,6 +8,8 @@ $font-12: 12px;
   margin: 0px 25px 20px 25px;
   box-shadow:  0 0 10px lightgray;
   border-radius: 5px;
+
+
   .project-header, .project-subheader {
     display: flex;
     flex: 1;
@@ -30,6 +32,8 @@ $font-12: 12px;
     .project-status{
       text-align: right;
       width: 50%;
+      margin-right: 4px;
+
       .status-label {
         display: inline-block;
         font-size: $font-12;
@@ -83,17 +87,23 @@ $font-12: 12px;
       }
     }
   }
+
   .project-body{
     min-height: 150px;
     border-radius: 0 0 5px 5px;
     background-color: white;
     padding: 4px 20px 30px 20px;
-     .description-width{
-        display: inline-block;
-        width: 55%;
-        .project-description{
-          display: inline;
-          font-size: $font-12;
+    display: flex;
+    flex: 1;
+
+    .description-width{
+      display: inline-block;
+      width: 62%;
+
+      .project-description{
+        display: inline;
+        font-size: $font-12;
+
           .project-edit-description{
             padding: 2px 5px;
             border-radius: 2px;
@@ -106,7 +116,6 @@ $font-12: 12px;
       .effort-level-box{
         background-color: $background-grey;
         display: inline-block;
-        float: right;
         border-radius: 2px;
         border: 1px solid #c9d6df;
         .es-effort-div{

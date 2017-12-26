@@ -164,15 +164,11 @@ class ProjectDetails extends React.Component {
     })
   }
 
-//FIX!!!!!
   handleDeleteProject(id) {
-    //console.log(id);
-    //console.log(this.props.form_token);
     axios.delete(`/projects/${id}`, {
       data: { authenticity_token: this.props.form_token }
     }).then((response) => {
-      alert('some shit went wrong saving the project')
-
+      document.location = '/'
     })
   }
 
@@ -277,7 +273,7 @@ class ProjectDetails extends React.Component {
                   handleCommentUpdate={this.handleCommentUpdate}
                   editing={false}
                   canModify={this.canModify(comment)}
-                  handleCommentDelete={this.handleCommentDelete()}
+                  handleCommentDelete={this.handleCommentDelete}
                 />
               })
             }

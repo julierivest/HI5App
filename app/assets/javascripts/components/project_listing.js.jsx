@@ -7,7 +7,6 @@ class ProjectListing extends React.Component {
   }
 
   statusColor(){
-    console.log(this.state.status);
     if (this.props.status === "started") {
       return (
           <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.props.status.toUpperCase()}</span>
@@ -28,7 +27,7 @@ class ProjectListing extends React.Component {
   }
 
   render () {
-    console.log('rendered')
+    console.log(this.props)
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, comments } = this.props
     return (
       <div className="">
@@ -49,16 +48,18 @@ class ProjectListing extends React.Component {
               <div className="description-width">
                 <p className="project-description">{description}</p>
               </div>
-              <div className="effort-level-box">
-                <div className="es-effort-div text-center">
-                <span className="effort-title">Estimated level of effort</span>
-                <span className="project-es-effort">{estimated_effort}</span>
-                </div>
-                <div className="ac-effort-div text-center">
-                <span className="effort-title">Actual level of effort</span>
-                <span className="project-ac-effort">{actual_effort ? actual_effort : '\u00A0'}</span>
-                </div>
-                </div>
+              <div>
+                <span className="effort-level-box">
+                  <div className="es-effort-div text-center">
+                  <span className="effort-title">Estimated level of effort</span>
+                  <span className="project-es-effort">{estimated_effort}</span>
+                  </div>
+                  <div className="ac-effort-div text-center">
+                  <span className="effort-title">Actual level of effort</span>
+                  <span className="project-ac-effort">{actual_effort ? actual_effort : '\u00A0'}</span>
+                  </div>
+                </span>
+              </div>
             </div>
           </div>
       </div>

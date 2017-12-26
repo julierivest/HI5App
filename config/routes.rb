@@ -5,23 +5,19 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
-  root 'projects#index'
-  get 'projects/index'
-  get 'users/:id', to: 'users/users#show', as: :profile
-
   devise_scope :user do
-   delete "/users/sign_out" => "devise/sessions#destroy"
+    delete "/users/sign_out" => "devise/sessions#destroy"
   end
 
-  resources :users
-
-  resources :projects
-
-  resources :users do
+  resources :users, except: [:show] do
     resources :projects
   end
+
+  get '/profile', to: 'users#show', as: :profile
 
   resources :projects do
     resources :comments
   end
+
+  root 'projects#index'
 end

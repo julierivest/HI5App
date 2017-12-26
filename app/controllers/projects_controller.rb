@@ -55,7 +55,6 @@ class ProjectsController < ApplicationController
       render json: {
         status: :ok
       }
-      redirect_to :root
     else
       render json: {
         errors: @project.errors

@@ -2,16 +2,8 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
 
-    <%= react_component("ProjectsContainer", { projects: @user.projects }) %>
+    <%= react_component("ProjectsContainer", { projects: @user.projects.include_user }) %>
 
   </div>
   <div class="col-md-2"></div>
 </div>
-
-
-
-
-
-
-
-
