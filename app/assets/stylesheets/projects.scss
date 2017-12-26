@@ -1,3 +1,8 @@
+$background-grey: #eff3f7;
+$button-red: #fa0f3a;
+$icon-grey: #676166;
+$font-12: 12px;
+
 .project-box{
   box-sizing: border-box;
   margin: 0px 25px 20px 25px;
@@ -27,9 +32,8 @@
       width: 50%;
       .status-label {
         display: inline-block;
-        font-size: 12px;
-        border: 1px solid red;
-        color: red;
+        font-size: $font-12;
+        border: 1px solid;
         padding: 6px 8em 4px 8em;
         margin: 3px 0px;
         border-radius: 2px;
@@ -51,8 +55,8 @@
       .project-date{
         margin-right: 12px;
         margin-left: 6px;
-        color: #676166;
-        font-size: 12px;
+        color: $icon-grey;
+        font-size: $font-12;
         text-decoration: underline;
       }
     }
@@ -61,7 +65,7 @@
       text-align: right;
       .project-edit-btn,
       .project-delete-btn{
-        color: #676166;
+        color: $icon-grey;
         margin-left: 10px;
         cursor: pointer;
         &:hover{
@@ -69,14 +73,13 @@
         }
       }
       .project-update-btn{
-        border: 1px solid #fa0f3a;
-
-      background-color: #fa0f3a;
-      padding: 2px 10px;
-      border-radius: 3px;
-      color: white;
-      font-size: 12px;
-      font-weight: 400;
+        border: 1px solid $button-red;
+        background-color: $button-red;
+        padding: 2px 10px;
+        border-radius: 3px;
+        color: white;
+        font-size: $font-12;
+        font-weight: 400;
       }
     }
   }
@@ -90,18 +93,18 @@
         width: 55%;
         .project-description{
           display: inline;
-          font-size: 12px;
+          font-size: $font-12;
           .project-edit-description{
             padding: 2px 5px;
             border-radius: 2px;
             width: 100%;
             height: 112px;
-            font-size: 12px;
+            font-size: $font-12;
           }
         }
       }
       .effort-level-box{
-        background-color: #eff3f7;
+        background-color: $background-grey;
         display: inline-block;
         float: right;
         border-radius: 2px;
@@ -113,7 +116,7 @@
           width: 122px;
         .effort-title{
           display: block;
-          font-size: 12px;
+          font-size: $font-12;
           font-weight: 600;
           color: #858d99;
         }
@@ -125,13 +128,12 @@
         }
       }
       .ac-effort-div{
-        //width: 9em;
         padding: 15px;
         width: 122px;
         display: inline-block;
         .effort-title{
           display: block;
-          font-size: 12px;
+          font-size: $font-12;
           font-weight: 600;
           color: #858d99;
         }

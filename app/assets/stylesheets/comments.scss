@@ -1,3 +1,7 @@
+$background-grey: #eff3f7;
+$icon-grey: #676166;
+$button-red: #fa0f3a;
+$font-12: 12px;
 
 .comments-section{
   margin: 0px 25px 20px 25px;
@@ -18,19 +22,14 @@
     }
     .comment-submit-btn{
       float: right;
-      border: 1px solid #fa0f3a;
+      border: 1px solid $button-red;
       display: inline;
-      background-color: #fa0f3a;
+      background-color: $button-red;
       padding: 2px 10px;
       border-radius: 3px;
       color: white;
-      font-size: 12px;
+      font-size: $font-12;
       font-weight: 400;
-      &:hover{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
       &:focus{
         outline: none;
       }
@@ -41,10 +40,10 @@
     padding: 15px 30px;
     .comment-date,
     .comment-user{
-      margin-right: 12px;
+      margin-right: $font-12;
       margin-left: 6px;
-      color: #676166;
-      font-size: 12px;
+      color: $icon-grey;
+      font-size: $font-12;
       text-decoration: underline;
     }
     .modify-comment-btns-div{
@@ -52,7 +51,7 @@
       float: right;
       .comment-edit-btn,
       .comment-delete-btn{
-        color: #676166;
+        color: $icon-grey;
         margin-left: 10px;
         cursor: pointer;
         &:hover{
@@ -63,13 +62,13 @@
     .comment-body{
       margin: 10px 0px 0px 0px;
       display: inline-block;
-      font-size: 12px;
+      font-size: $font-12;
     }
     .comment-textarea-edit{
       min-width: 82%;
       min-height: 40px;
       max-width: 90%;
-      font-size: 12px;
+      font-size: $font-12;
       border: none;
       border-radius: 2px;
       display: inline;
@@ -78,18 +77,13 @@
     }
     .comment-update-btn {
       float: right;
-      background-color: #fa0f3a;
+      background-color: $button-red;
       padding: 2px 10px;
       border-radius: 3px;
       color: white;
-      font-size: 12px;
+      font-size: $font-12;
       font-weight: 400;
-      border: 1px solid #fa0f3a;
-      &:hover{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
+      border: 1px solid $button-red;
       &:focus{
         outline: none;
       }

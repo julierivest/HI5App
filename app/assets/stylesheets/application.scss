@@ -8,11 +8,14 @@
 // Comments
 @import "comments";
 
+$background-grey: #eff3f7;
+$button-red: #fa0f3a;
+$font-size: 12px;
+
 body{
   padding-top: 110px;
-  background-color: #eff3f7;
+  background-color: $background-grey;
 }
-
 // Navbar
 .navbar {
   border-radius: 0px;
@@ -26,19 +29,19 @@ body{
   }
   li > a.nav-link{
     color: white;
-    font-size: 12px;
+    font-size: $font-12;
   }
   #new-project-btn{
-    background-color: #fa0f3a;
+    background-color: $button-red;
     color: white;
-    font-size: 12px;
+    font-size: $font-12;
     padding: 8px 45px;
     margin-left: 20px;
   }
   #sign-in-btn{
     background-color: #073795;
     color: white;
-    font-size: 12px;
+    font-size: $font-12;
     padding: 8px 20px;
     margin-right: 20px;
   }
