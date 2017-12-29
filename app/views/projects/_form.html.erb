@@ -24,8 +24,9 @@
     <%= form.text_area :description, class: 'form-control', rows: '5' %>
   </div>
 
-  <label>Project status: </label>
+ 
   <div class="form-group form-status">
+    <label>Project status: </label>
     <%= form.radio_button :status, 'created' %>
     <%= form.label :status, 'Created', :value => 'created' %>
     <%= form.radio_button :status, 'started' %>
@@ -48,7 +49,7 @@
   </div>
 
   <div class="text-center">
-    <%= form.submit %>
+    <%= form.submit 'Save', :class => 'new-project-submit' %>
   </div>
 
 <% end %>

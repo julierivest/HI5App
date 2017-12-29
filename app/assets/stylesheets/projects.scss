@@ -2,6 +2,7 @@ $background-grey: #eff3f7;
 $button-red: #fa0f3a;
 $icon-grey: #676166;
 $font-12: 12px;
+$effort-text: #858d99;
 
 #no-projects-notice{
   font-size: 22px;
@@ -103,7 +104,8 @@ $font-12: 12px;
 
     .description-width{
       display: inline-block;
-      width: 62%;
+      width: 60%;
+      margin-right: 13px;
 
       .project-description{
         display: inline;
@@ -128,19 +130,20 @@ $font-12: 12px;
           border-right: 1px solid #c9d6df;
           padding: 15px;
           width: 122px;
-        .effort-title{
-          display: block;
-          font-size: $font-12;
-          font-weight: 600;
-          color: #858d99;
+          height: 100%;
+          .effort-title{
+            display: block;
+            font-size: $font-12;
+            font-weight: 600;
+            color: $effort-text;
+          }
+          .project-es-effort{
+            display: block;
+            font-size: 34px;
+            font-weight: 700;
+            color: $effort-text;
+          }
         }
-        .project-es-effort{
-          display: block;
-          font-size: 34px;
-          font-weight: 700;
-          color: #858d99;
-        }
-      }
       .ac-effort-div{
         padding: 15px;
         width: 122px;
@@ -149,7 +152,7 @@ $font-12: 12px;
           display: block;
           font-size: $font-12;
           font-weight: 600;
-          color: #858d99;
+          color: $effort-text;
         }
         .project-ac-effort{
           display: block;
@@ -165,5 +168,31 @@ $font-12: 12px;
         }
       }
     }
+  }
+}
+
+.new_project{
+  .form-description{
+    textarea{
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+  .form-status, 
+  .form-es-level, 
+  .form-published{
+    input, 
+    select{
+      margin-left: 10px;
+    }
+  }
+  .new-project-submit{
+    border: 1px solid $button-red;
+    background-color: $button-red;
+    padding: 4px 16px;
+    border-radius: 3px;
+    color: white;
+    font-size: $font-12;
+    font-weight: 400;
   }
 }

@@ -18,7 +18,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-
     record == user || user.admin?
   end
 
@@ -29,7 +28,6 @@ class UserPolicy < ApplicationPolicy
   def update?
     record == user
   end
-
 
   class Scope < Scope
     def resolve
