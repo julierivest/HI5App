@@ -24,6 +24,7 @@ class ProjectDetails extends React.Component {
     this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
     this.handleDeleteProject = this.handleDeleteProject.bind(this)
     this.statusColor = this.statusColor.bind(this)
+    this.capitalize = this.capitalize.bind(this)
   }
 
   componentDidMount() {
@@ -172,6 +173,12 @@ class ProjectDetails extends React.Component {
     })
   }
 
+  capitalize(status){
+  return status.trim().split('')
+    .map((char,i) => i === 0 ? char.toUpperCase() : char )
+    .reduce((final,char)=> final += char, '' )
+  }
+
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
     const statuses = ['created', 'started', 'stopped', 'completed']
@@ -197,7 +204,7 @@ class ProjectDetails extends React.Component {
                     onChange={this.handleStatusChange}
                     value={this.state.status} >
                         {
-                          statuses.map(status => <option value={status}>{status}</option>)
+                          statuses.map(status => <option value={status}>{this.capitalize(status)}</option>)
                         }
                     </select>
                   )
