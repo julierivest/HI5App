@@ -4,9 +4,13 @@ class ProjectDetails extends React.Component {
 
     this.state = {
       comment: '',
+      comment_error: '',
       comments: [],
       comments_loading: true,
       editing: false,
+      name_error: '',
+      description_error: '',
+      actual_effort_error: '',
       ...props.project,
     }
     this.handleCommentChanged = this.handleCommentChanged.bind(this)
@@ -24,10 +28,12 @@ class ProjectDetails extends React.Component {
     this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
     this.handleDeleteProject = this.handleDeleteProject.bind(this)
     this.statusColor = this.statusColor.bind(this)
-    this.capitalize = this.capitalize.bind(this)
+    this.validateProjectForm = this.validateProjectForm.bind(this)
+    this.hasErrorOn = this.hasErrorOn.bind(this)
   }
 
   componentDidMount() {
+    this.validateProjectForm()
     this.loadComments()
   }
 
@@ -49,7 +55,12 @@ class ProjectDetails extends React.Component {
   }
 
   handleCommentSubmit(e) {
-    e.preventDefault()
+     e.preventDefault()
+    if (this.state.comment.length === 0) {
+      this.setState({ comment_error: "Comment cannot be blank" })
+      return
+    }
+
     axios.post(`/projects/${this.props.project.id}/comments`, {
       authenticity_token: this.props.form_token,
       comment: {
@@ -144,7 +155,31 @@ class ProjectDetails extends React.Component {
     }
   }
 
-  handleSaveProject() {
+  validateProjectForm() {
+    if (this.state.name.length === 0) {
+      this.setState({ name_error: 'Project must have a name' })
+    }
+
+    if (this.state.description.length === 0) {
+      this.setState({ description_error: 'Project must have a description' })
+    }
+
+    if (this.state.status === 'completed') {
+      if (this.state.actual_effort === null) {
+        this.setState({ actual_effort_error: 'Completed projects must have an actual effort' })
+      }
+    }
+  }
+
+  hasErrorOn(attr) {
+    return this.state[`${attr}_error`].length > 0
+  }
+
+  handleSaveProject(e) {
+    e.preventDefault()
+
+    if (!this.validateProjectForm()) return false
+
     axios.patch(`/projects/${this.props.project.id}`, {
       authenticity_token: this.props.form_token,
       project: {
@@ -174,14 +209,21 @@ class ProjectDetails extends React.Component {
   }
 
   capitalize(status){
-  return status.trim().split('')
-    .map((char,i) => i === 0 ? char.toUpperCase() : char )
-    .reduce((final,char)=> final += char, '' )
+    return status.trim().split('')
+      .map((char,i) => i === 0 ? char.toUpperCase() : char )
+      .reduce((final,char)=> final += char, '' )
   }
 
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, current_user } = this.props.project
     const statuses = ['created', 'started', 'stopped', 'completed']
+    const nameStyle = {}
+    const descriptionStyle = {}
+    const actualEffortStyle = {}
+    if( this.hasErrorOn('name') ) nameStyle.border = '1px solid red'
+    if( this.hasErrorOn('description') ) descriptionStyle.border = '1px solid red'
+    if( this.hasErrorOn('actual_effort') ) actualEffortStyle.border = '1px solid red'
+
     return (
       <div className="">
         <div className="project-box">
@@ -189,10 +231,13 @@ class ProjectDetails extends React.Component {
             <div className="project-name">
               {
                 this.state.editing ?
-                  ( <input className="project-edit-name"
-                    type="text"
-                    value={this.state.name}
-                    onChange={this.handleNameChange} />
+                  ( <input 
+                      className="project-edit-name"
+                      type="text"
+                      value={this.state.name}
+                      onChange={this.handleNameChange}
+                      style={nameStyle}
+                    />
                   )
                 : this.state.name
               }
@@ -231,9 +276,11 @@ class ProjectDetails extends React.Component {
               <div className="description-width">
                 <p className="project-description">{
                   this.state.editing ?
-                    <textarea className="project-edit-description"
-                        onChange={this.handleDescriptionChange}
-                      >{this.state.description}</textarea>
+                    <textarea
+                      className="project-edit-description"
+                      onChange={this.handleDescriptionChange}
+                      style={descriptionStyle}
+                    >{this.state.description}</textarea>
                     : this.state.description
                   }
                 </p>
@@ -252,6 +299,7 @@ class ProjectDetails extends React.Component {
                         type='text'
                         value={this.state.actual_effort}
                         onChange={this.handleActualEffortChanged}
+                        style={actualEffortStyle}
                       />
                     )
                     : this.state.actual_effort ? this.state.actual_effort : '\u00A0'
@@ -268,6 +316,8 @@ class ProjectDetails extends React.Component {
               handleCommentChanged={this.handleCommentChanged}
               value={this.state.comment}
               form_token={this.props.form_token}
+              hasError={this.state.comment_error.length > 0}
+              error={this.state.comment_error}
           />
           <div>
             {

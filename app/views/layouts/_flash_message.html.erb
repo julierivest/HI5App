@@ -1,0 +1,10 @@
+<% if flash.count > 0 %>
+  <% flash.each do |key, value| %>
+    <div class="row flash">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8">
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

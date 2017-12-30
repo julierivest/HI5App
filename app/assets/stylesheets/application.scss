@@ -13,6 +13,16 @@ $button-red: #fa0f3a;
 $font-size: 12px;
 $icon-grey: #676166;
 
+.alert-alert {
+  background: #fa0f3a;
+  color: white;
+}
+
+.alert-notice {
+  background: #81bffd;
+  color: white;
+}
+
 body{
   padding-top: 110px;
   background-color: $background-grey;

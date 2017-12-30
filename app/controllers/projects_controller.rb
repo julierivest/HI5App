@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
     @project = user_projects.new(project_params)
     authorize @project
     if @project.save
-      redirect_to @project
+      redirect_to @project, notice: "Awesome, you created a project!"
     else
       render 'new'
     end
