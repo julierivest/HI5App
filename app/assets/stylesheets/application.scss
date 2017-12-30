@@ -13,6 +13,10 @@ $button-red: #fa0f3a;
 $font-size: 12px;
 $icon-grey: #676166;
 
+.project-header:hover {
+  background-color: red;
+}
+
 .alert-alert {
   background: #fa0f3a;
   color: white;

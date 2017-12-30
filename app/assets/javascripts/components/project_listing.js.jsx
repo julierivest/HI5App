@@ -27,7 +27,6 @@ class ProjectListing extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, comments } = this.props
     return (
       <div className="">
