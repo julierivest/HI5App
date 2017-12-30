@@ -4,7 +4,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if !@user.persisted?
       session["devise.facebook_data"] = request.env["omniauth.auth"]
-      @user.save
+      @user.save(validate:false)
     end
 
     sign_in_and_redirect @user, :event => :authentication
