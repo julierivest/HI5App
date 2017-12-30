@@ -40,7 +40,7 @@ class ProjectListing extends React.Component {
             </div>
             <div className="project-subheader">
                 <div className="project-info">
-                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name ? user.name : user.email}</span>
+                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name}</span>
                   <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
                 </div>
             </div>
