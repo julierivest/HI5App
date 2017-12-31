@@ -3,9 +3,10 @@ class ProjectListing extends React.Component {
     super(props)
     this.state = {
     }
-    this.statusColor = this.statusColor.bind(this)
+    //this.statusColor = this.statusColor.bind(this)
   }
 
+/*
   statusColor(){
     if (this.props.status === "started") {
       return (
@@ -24,17 +25,33 @@ class ProjectListing extends React.Component {
       <span className="status-label" style={{color: 'orange', borderColor: 'orange'}}>{this.props.status.toUpperCase()}</span>
       )
     }
-  }
+  }*/
 
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, comments } = this.props
+    const statusStyle = {}
+
+    if (status === 'started') {
+      statusStyle.color = 'red'
+      statusStyle.borderColor = 'red' 
+    } else if (status === 'created') {
+      statusStyle.color = 'orange'
+      statusStyle.borderColor = 'orange' 
+    } else if (status === 'stopped') {
+      statusStyle.color = 'purple'
+      statusStyle.borderColor = 'purple' 
+    } else if (status === 'completed') {
+      statusStyle.color = 'green'
+      statusStyle.borderColor = 'green' 
+    }
+
     return (
       <div className="">
           <div className="project-box">
             <div className="project-header">
                 <a className="project-name" href={`/projects/${id}`}>{name}</a>
                 <div className="project-status">
-                  {this.statusColor()}
+                <span className="status-label"  style={statusStyle}>{this.props.status.toUpperCase()}</span>
                 </div>
             </div>
             <div className="project-subheader">
@@ -54,7 +71,7 @@ class ProjectListing extends React.Component {
                   <span className="project-es-effort">{estimated_effort}</span>
                   </div>
                   <div className="ac-effort-div text-center">
-                  <span className="effort-title">Actual level of effort</span>
+                  <span className="effort-title" style={ status === 'completed' ? {color: 'black'} : null }>Actual level of effort</span>
                   <span className="project-ac-effort">{actual_effort ? actual_effort : '\u00A0'}</span>
                   </div>
                 </span>

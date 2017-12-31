@@ -27,7 +27,7 @@ class ProjectDetails extends React.Component {
     this.handleStatusChange = this.handleStatusChange.bind(this)
     this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
     this.handleDeleteProject = this.handleDeleteProject.bind(this)
-    this.statusColor = this.statusColor.bind(this)
+    //this.statusColor = this.statusColor.bind(this)
     this.validateProjectForm = this.validateProjectForm.bind(this)
     this.hasErrorOn = this.hasErrorOn.bind(this)
   }
@@ -134,7 +134,7 @@ class ProjectDetails extends React.Component {
       editing: true
     })
   }
-
+/*
   statusColor(){
     if (this.state.status === "started") {
       return (
@@ -153,7 +153,7 @@ class ProjectDetails extends React.Component {
       <span className="status-label" style={{color: 'orange', borderColor: 'orange'}}>{this.state.status.toUpperCase()}</span>
       )
     }
-  }
+  }*/
 
   hasErrorOn(attr) {
     return this.state[`${attr}_error`].length > 0
@@ -239,6 +239,21 @@ class ProjectDetails extends React.Component {
     const descriptionStyle = {}
     const actualEffortStyle = {}
     const project_errors = []
+    const statusStyle = {}
+
+    if (this.state.status === 'started') {
+      statusStyle.color = 'red'
+      statusStyle.borderColor = 'red' 
+    } else if (this.state.status === 'created') {
+      statusStyle.color = 'orange'
+      statusStyle.borderColor = 'orange' 
+    } else if (this.state.status === 'stopped') {
+      statusStyle.color = 'purple'
+      statusStyle.borderColor = 'purple' 
+    } else if (this.state.status === 'completed') {
+      statusStyle.color = 'green'
+      statusStyle.borderColor = 'green' 
+    }
 
     if( this.hasErrorOn('name') ) {
       nameStyle.border = '1px solid red'
@@ -248,7 +263,6 @@ class ProjectDetails extends React.Component {
       descriptionStyle.border = '1px solid red'
       project_errors.push(this.state.description_error)
     }
-
     if( this.hasErrorOn('actual_effort') ) {
       actualEffortStyle.border = '1px solid red'
       project_errors.push(this.state.actual_effort_error)
@@ -283,7 +297,7 @@ class ProjectDetails extends React.Component {
                         }
                     </select>
                   )
-                  : this.statusColor()
+                  : <span className="status-label"  style={statusStyle}>{this.state.status.toUpperCase()}</span>
               }
             </div>
           </div>
@@ -314,7 +328,6 @@ class ProjectDetails extends React.Component {
                     >{this.state.description}</textarea>
                     : <p className="project-description">{this.state.description}</p>
                   }
-                
               </div>
               <div className="effort-level-box">
                 <div className="es-effort-div text-center">
@@ -322,7 +335,7 @@ class ProjectDetails extends React.Component {
                   <span className="project-es-effort">{estimated_effort}</span>
                 </div>
                 <div className="ac-effort-div text-center">
-                  <span className="effort-title">Actual level of effort</span>
+                  <span className="effort-title" style={ this.state.status === 'completed' ? {color: 'black'} : null }>Actual level of effort</span>
                   <span className="project-ac-effort">{
                     this.state.editing && this.state.status === 'completed' ?
                     (
