@@ -12,13 +12,14 @@ class CommentForm extends React.Component {
             placeholder="Write a comment..."
             style={style}
           ></textarea>
-          {
-            this.props.hasError
-              ? <div>{ this.props.error }</div>
-              : null
-          }
+          
           <button className="comment-submit-btn" type="submit" onClick={this.props.handleCommentSubmit}>Comment</button>
         </form>
+          {
+            this.props.hasError
+              ? <div className="comment-error-msg"><i className="fa fa-warning"></i> { this.props.error }</div>
+              : null
+          }
       </div>
     )
   }

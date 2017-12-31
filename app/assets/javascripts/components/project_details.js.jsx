@@ -55,21 +55,21 @@ class ProjectDetails extends React.Component {
   }
 
   handleCommentSubmit(e) {
-     e.preventDefault()
+    e.preventDefault()
     if (this.state.comment.length === 0) {
       this.setState({ comment_error: "Comment cannot be blank" })
-      return
+    } else {
+      this.setState({ comment_error: "" })
+      axios.post(`/projects/${this.props.project.id}/comments`, {
+        authenticity_token: this.props.form_token,
+        comment: {
+          body: this.state.comment
+        }
+      }).then((response) => {
+        this.setState({comment: ''})
+        this.loadComments()
+      })
     }
-
-    axios.post(`/projects/${this.props.project.id}/comments`, {
-      authenticity_token: this.props.form_token,
-      comment: {
-        body: this.state.comment
-      }
-    }).then((response) => {
-      this.setState({comment: ''})
-      this.loadComments()
-    })
   }
 
   handleCommentUpdate(id, body) {
@@ -155,31 +155,49 @@ class ProjectDetails extends React.Component {
     }
   }
 
-  validateProjectForm() {
-    if (this.state.name.length === 0) {
-      this.setState({ name_error: 'Project must have a name' })
-    }
-
-    if (this.state.description.length === 0) {
-      this.setState({ description_error: 'Project must have a description' })
-    }
-
-    if (this.state.status === 'completed') {
-      if (this.state.actual_effort === null) {
-        this.setState({ actual_effort_error: 'Completed projects must have an actual effort' })
-      }
-    }
-  }
-
   hasErrorOn(attr) {
     return this.state[`${attr}_error`].length > 0
   }
 
+  validateProjectForm() {
+    var res1 = true;
+    var res2 = true;
+    var res3 = true;
+    if (this.state.name.length === 0) {
+      this.setState({ name_error: 'Project must have a name' })
+      res1 = false;
+    } else {
+      this.setState({ name_error: '' })
+    }
+    
+    if (this.state.description.length < 5) {
+      this.setState({ description_error: 'Project description must be at least 5 characters long' })
+      res2 = false;
+    } else {
+      this.setState({ description_error: '' })
+    }
+  
+    if (this.state.status === 'completed') {
+      if (this.state.actual_effort === null) {
+        this.setState({ actual_effort_error: 'Completed projects must have an actual effort' })
+        res3 = false;
+      } else {
+        this.setState({ actual_effort_error: ''})
+      }
+    }
+  
+    if (res1 === true && res2 === true && res3 === true) {
+      console.log("func yield true");
+      return true;
+    } else {
+      console.log("func yield false");
+      return false;
+    }
+  }
+
   handleSaveProject(e) {
     e.preventDefault()
-
     if (!this.validateProjectForm()) return false
-
     axios.patch(`/projects/${this.props.project.id}`, {
       authenticity_token: this.props.form_token,
       project: {
@@ -220,9 +238,21 @@ class ProjectDetails extends React.Component {
     const nameStyle = {}
     const descriptionStyle = {}
     const actualEffortStyle = {}
-    if( this.hasErrorOn('name') ) nameStyle.border = '1px solid red'
-    if( this.hasErrorOn('description') ) descriptionStyle.border = '1px solid red'
-    if( this.hasErrorOn('actual_effort') ) actualEffortStyle.border = '1px solid red'
+    const project_errors = []
+
+    if( this.hasErrorOn('name') ) {
+      nameStyle.border = '1px solid red'
+      project_errors.push(this.state.name_error)
+    } 
+    if( this.hasErrorOn('description') ) {
+      descriptionStyle.border = '1px solid red'
+      project_errors.push(this.state.description_error)
+    }
+
+    if( this.hasErrorOn('actual_effort') ) {
+      actualEffortStyle.border = '1px solid red'
+      project_errors.push(this.state.actual_effort_error)
+    }
 
     return (
       <div className="">
@@ -274,16 +304,17 @@ class ProjectDetails extends React.Component {
             </div>
             <div className="project-body">
               <div className="description-width">
-                <p className="project-description">{
+                {
                   this.state.editing ?
                     <textarea
                       className="project-edit-description"
                       onChange={this.handleDescriptionChange}
                       style={descriptionStyle}
+                      
                     >{this.state.description}</textarea>
-                    : this.state.description
+                    : <p className="project-description">{this.state.description}</p>
                   }
-                </p>
+                
               </div>
               <div className="effort-level-box">
                 <div className="es-effort-div text-center">
@@ -308,6 +339,9 @@ class ProjectDetails extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="project-errors">
+              { project_errors.map(error => <p className="project-error-msg"><i className="fa fa-warning"></i> {error}</p>) }
+            </div>
           </div>
           <div className="comments-section">
             <CommentForm
@@ -318,7 +352,7 @@ class ProjectDetails extends React.Component {
               form_token={this.props.form_token}
               hasError={this.state.comment_error.length > 0}
               error={this.state.comment_error}
-          />
+            />
           <div>
             {
               this.state.comments_loading ?

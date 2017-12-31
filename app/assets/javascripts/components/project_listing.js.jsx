@@ -30,7 +30,7 @@ class ProjectListing extends React.Component {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, comments } = this.props
     return (
       <div className="">
-          <div className="project-box">
+          <div className="project-box-index">
             <div className="project-header">
                 <a className="project-name" href={`/projects/${id}`}>{name}</a>
                 <div className="project-status">
@@ -39,8 +39,8 @@ class ProjectListing extends React.Component {
             </div>
             <div className="project-subheader">
                 <div className="project-info">
-                  <i className="fa fa-user" aria-hidden="true"></i><span className="project-user">{user.name}</span>
-                  <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{created_at}</span>
+                  <i className="fa fa-user" aria-hidden="true"></i><a className="project-user" href={`/profile.${id}`}>{user.name}</a>
+                  <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{moment(created_at).fromNow()}</span>
                 </div>
             </div>
             <div className="project-body">

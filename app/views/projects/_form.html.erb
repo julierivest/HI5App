@@ -14,8 +14,8 @@
 
  
   <div class="form-group form-status">
-    <label>Project status: </label>
-    <%= form.radio_button :status, 'created' %>
+    <label>Status: </label>
+    <%= form.radio_button :status, 'created', checked: true %>
     <%= form.label :status, 'Created', :value => 'created' %>
     <%= form.radio_button :status, 'started' %>
     <%= form.label :status, 'Started', :value => 'started' %>

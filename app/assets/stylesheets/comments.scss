@@ -5,7 +5,7 @@ $font-12: 12px;
 
 .comments-section{
   margin: 0px 25px 20px 25px;
-  background-color: #f796a8;
+  background-color: #ffc7d2;
   box-shadow:  0 0 10px lightgray;
   border-radius: 5px;
   .comment-new-box{
@@ -13,7 +13,7 @@ $font-12: 12px;
     .comment-textarea{
       border: none;
       display: inline;
-      padding: 2px 5px;
+      padding: 4px 6px;
       border-radius: 2px;
       min-width: 82%;
       min-height: 40px;
@@ -34,6 +34,11 @@ $font-12: 12px;
       &:focus{
         outline: none;
       }
+    }
+    .comment-error-msg{
+      font-size: $font-12;
+      font-weight: 500;
+      color: red;
     }
   }
   .comment{

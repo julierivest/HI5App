@@ -2,8 +2,8 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 5 }
-  validates :description, presence: true, length: { minimum: 5 }
+  validates :name, length: { minimum: 5 }
+  validates :description, length: { minimum: 5 }
   validates :estimated_effort, presence: true
   validates :status, presence: true
 
