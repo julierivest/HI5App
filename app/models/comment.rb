@@ -4,5 +4,5 @@ class Comment < ApplicationRecord
 
   validates :user_id, presence: true
   validates :project_id, presence: true
-  validates :body, presence: true, length: { minimum: 3 }
+  validates :body, presence: true
 end

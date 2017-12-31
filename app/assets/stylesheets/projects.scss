@@ -9,9 +9,6 @@ $effort-text: #858d99;
   color: $icon-grey;
 }
 
-
-
-
 .project-box{
   padding-bottom: 15px;
   box-sizing: border-box;
@@ -22,8 +19,8 @@ $effort-text: #858d99;
   .project-header, .project-subheader {
     display: flex;
     flex: 1;
-    border-radius: 5px 5px 0 0;
-    padding: 15px 20px 10px 20px;
+    //border-radius: 5px 5px 0 0;
+    padding: 12px 20px 10px 20px;
     border-bottom: 1px solid #e1e8ee;
     width: 100%;
     .project-name {
@@ -42,13 +39,16 @@ $effort-text: #858d99;
     .project-status{
       text-align: right;
       width: 50%;
+      
       .status-label {
         display: inline-block;
         font-size: $font-12;
         border: 1px solid;
-        padding: 6px 8em 4px 8em;
+        padding: 6px 0px 4px 0px;
         margin: 3px 0px;
         border-radius: 2px;
+        width: 246px;
+        text-align: center;
       }
       .project-edit-status{
         display: inline-block;
@@ -92,13 +92,16 @@ $effort-text: #858d99;
         color: white;
         font-size: $font-12;
         font-weight: 400;
+        &:focus{
+          outline: none;
+        }
       }
     }
   }
   .project-body{
-    min-height: 135px;
+    min-height: 125px;
     border-radius: 0 0 5px 5px;
-    padding: 4px 20px 15px 20px;
+    padding: 4px 20px 10px 20px;
     display: flex;
     flex: 1;
     .description-width{
@@ -113,6 +116,8 @@ $effort-text: #858d99;
           padding: 4px 6px;
           border-radius: 2px;
           width: 100%;
+          max-width: 400px;
+          max-height: 300px;
           height: 115px;
           font-size: $font-12;
           border: 1px solid lightgray;
@@ -129,7 +134,6 @@ $effort-text: #858d99;
           border-right: 1px solid #c9d6df;
           padding: 15px;
           width: 122px;
-          //height: 100%;
           max-height: 103px;
           .effort-title{
             display: block;
@@ -145,7 +149,6 @@ $effort-text: #858d99;
           }
         }
       .ac-effort-div{
-        //height: 100%;
         max-height: 103px;
         padding: 15px;
         width: 122px;

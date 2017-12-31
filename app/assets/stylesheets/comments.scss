@@ -9,15 +9,17 @@ $font-12: 12px;
   box-shadow:  0 0 10px lightgray;
   border-radius: 5px;
   .comment-new-box{
+    //display: flex;
+    //flex: 1;
     padding: 20px 30px;
     .comment-textarea{
       border: none;
       display: inline;
       padding: 4px 6px;
       border-radius: 2px;
-      min-width: 82%;
+      min-width: 85%;
       min-height: 40px;
-      max-width: 90%;
+      max-width: 85%;
       margin-right: 20px;
       font-size: $font-12;
     }
@@ -71,9 +73,9 @@ $font-12: 12px;
       font-size: $font-12;
     }
     .comment-textarea-edit{
-      min-width: 82%;
+      min-width: 85%;
       min-height: 40px;
-      max-width: 90%;
+      max-width: 85%;
       font-size: $font-12;
       border: none;
       border-radius: 2px;
