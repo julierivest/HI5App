@@ -12,20 +12,19 @@ $effort-text: #858d99;
 
 
 
-.project-box-index{
+.project-box{
+  padding-bottom: 15px;
   box-sizing: border-box;
   margin: 0px 25px 20px 25px;
   box-shadow:  0 0 10px lightgray;
   border-radius: 5px;
-
-
+  background-color: white;
   .project-header, .project-subheader {
     display: flex;
     flex: 1;
     border-radius: 5px 5px 0 0;
     padding: 15px 20px 10px 20px;
     border-bottom: 1px solid #e1e8ee;
-    background-color: white;
     width: 100%;
     .project-name {
       display: inline;
@@ -36,13 +35,13 @@ $effort-text: #858d99;
       .project-edit-name{
         padding: 0px 5px;
         width: 100%;
+        border: 1px solid lightgray;
+        border-radius: 2px;
       }
     }
     .project-status{
       text-align: right;
       width: 50%;
-      margin-right: 4px;
-
       .status-label {
         display: inline-block;
         font-size: $font-12;
@@ -74,7 +73,6 @@ $effort-text: #858d99;
       }
     }
     .project-actions {
-      margin-right: 4px;
       width: 50%;
       text-align: right;
       .project-edit-btn,
@@ -97,34 +95,31 @@ $effort-text: #858d99;
       }
     }
   }
-
   .project-body{
-    min-height: 150px;
+    min-height: 135px;
     border-radius: 0 0 5px 5px;
-    background-color: white;
-    padding: 4px 20px 30px 20px;
+    padding: 4px 20px 15px 20px;
     display: flex;
     flex: 1;
-
     .description-width{
       display: inline-block;
-      width: 60%;
-      margin-right: 13px;
-
+      width: 55%;
+      margin-right: 51px;
       .project-description{
         display: inline;
         font-size: $font-12;
-
-          .project-edit-description{
-            padding: 2px 5px;
-            border-radius: 2px;
-            width: 100%;
-            height: 112px;
-            font-size: $font-12;
-          }
+        }
+        .project-edit-description{
+          padding: 4px 6px;
+          border-radius: 2px;
+          width: 100%;
+          height: 115px;
+          font-size: $font-12;
+          border: 1px solid lightgray;
         }
       }
       .effort-level-box{
+        max-height: 105px;
         background-color: $background-grey;
         display: inline-block;
         border-radius: 2px;
@@ -134,7 +129,8 @@ $effort-text: #858d99;
           border-right: 1px solid #c9d6df;
           padding: 15px;
           width: 122px;
-          height: 100%;
+          //height: 100%;
+          max-height: 103px;
           .effort-title{
             display: block;
             font-size: $font-12;
@@ -149,6 +145,8 @@ $effort-text: #858d99;
           }
         }
       .ac-effort-div{
+        //height: 100%;
+        max-height: 103px;
         padding: 15px;
         width: 122px;
         display: inline-block;
@@ -168,16 +166,27 @@ $effort-text: #858d99;
             color: black;
             font-size: 24px;
             padding: 0px 5px;
+            border: 1px solid lightgray;
+            border-radius: 2px;
           }
         }
       }
+    }
+  }
+  .project-errors{
+    margin-right: 20px;
+    margin-left: 20px;
+    .project-error-msg{
+      color: red;
+      font-size: $font-12;
+      font-weight: 500;
     }
   }
 }
 
 
 
-
+/*
 
 
 .project-box{
@@ -376,7 +385,7 @@ $effort-text: #858d99;
     }
   }
 }
-
+*/
 .new_project{
   .form-description{
     textarea{

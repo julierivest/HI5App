@@ -30,7 +30,7 @@ class ProjectListing extends React.Component {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, comments } = this.props
     return (
       <div className="">
-          <div className="project-box-index">
+          <div className="project-box">
             <div className="project-header">
                 <a className="project-name" href={`/projects/${id}`}>{name}</a>
                 <div className="project-status">
