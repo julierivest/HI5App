@@ -3,29 +3,7 @@ class ProjectListing extends React.Component {
     super(props)
     this.state = {
     }
-    //this.statusColor = this.statusColor.bind(this)
   }
-
-/*
-  statusColor(){
-    if (this.props.status === "started") {
-      return (
-          <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.props.status.toUpperCase()}</span>
-        )
-    } else if (this.props.status === "completed") {
-      return(
-          <span className="status-label" style={{color: 'green', borderColor: 'green'}}>{this.props.status.toUpperCase()}</span>
-        )
-    } else if (this.props.status === "stopped") {
-      return (
-          <span className="status-label" style={{color: 'purple', borderColor: 'purple'}}>{this.props.status.toUpperCase()}</span>
-        )
-    } else {
-      return(
-      <span className="status-label" style={{color: 'orange', borderColor: 'orange'}}>{this.props.status.toUpperCase()}</span>
-      )
-    }
-  }*/
 
   render () {
     const { id, user, name, description, status, estimated_effort, actual_effort, published, created_at, comments } = this.props

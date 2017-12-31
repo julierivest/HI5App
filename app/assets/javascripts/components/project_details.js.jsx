@@ -27,7 +27,6 @@ class ProjectDetails extends React.Component {
     this.handleStatusChange = this.handleStatusChange.bind(this)
     this.handleActualEffortChanged = this.handleActualEffortChanged.bind(this)
     this.handleDeleteProject = this.handleDeleteProject.bind(this)
-    //this.statusColor = this.statusColor.bind(this)
     this.validateProjectForm = this.validateProjectForm.bind(this)
     this.hasErrorOn = this.hasErrorOn.bind(this)
   }
@@ -134,26 +133,6 @@ class ProjectDetails extends React.Component {
       editing: true
     })
   }
-/*
-  statusColor(){
-    if (this.state.status === "started") {
-      return (
-          <span className="status-label"  style={{color: 'red', borderColor: 'red'}}>{this.state.status.toUpperCase()}</span>
-        )
-    } else if (this.state.status === "completed") {
-      return(
-          <span className="status-label" style={{color: 'green', borderColor: 'green'}}>{this.state.status.toUpperCase()}</span>
-        )
-    } else if (this.state.status === "stopped") {
-      return (
-          <span className="status-label" style={{color: 'purple', borderColor: 'purple'}}>{this.state.status.toUpperCase()}</span>
-        )
-    } else {
-      return(
-      <span className="status-label" style={{color: 'orange', borderColor: 'orange'}}>{this.state.status.toUpperCase()}</span>
-      )
-    }
-  }*/
 
   hasErrorOn(attr) {
     return this.state[`${attr}_error`].length > 0
@@ -163,6 +142,7 @@ class ProjectDetails extends React.Component {
     var res1 = true;
     var res2 = true;
     var res3 = true;
+
     if (this.state.name.length === 0) {
       this.setState({ name_error: 'Project must have a name' })
       res1 = false;
@@ -185,14 +165,8 @@ class ProjectDetails extends React.Component {
         this.setState({ actual_effort_error: ''})
       }
     }
-  
-    if (res1 === true && res2 === true && res3 === true) {
-      console.log("func yield true");
-      return true;
-    } else {
-      console.log("func yield false");
-      return false;
-    }
+    
+    return (res1 && res2 && res3)
   }
 
   handleSaveProject(e) {
