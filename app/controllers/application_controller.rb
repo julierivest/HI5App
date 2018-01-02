@@ -7,12 +7,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authorize_admin
-    redirect_to '/', notice: "You need admin credentials" unless current_user.admin?
-  end
-
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = "You are not authorized to perform this action"
     redirect_to(request.referrer || root_path)
   end
 end

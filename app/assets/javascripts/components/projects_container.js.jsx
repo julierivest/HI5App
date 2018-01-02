@@ -1,5 +1,4 @@
 var ProjectsContainer = createReactClass({
-
   render: function() {
     return(
       <div>
