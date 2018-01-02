@@ -12,7 +12,6 @@ class CommentForm extends React.Component {
             placeholder="Write a comment..."
             style={style}
           ></textarea>
-          
           <button className="comment-submit-btn" type="submit" onClick={this.props.handleCommentSubmit}>Comment</button>
         </form>
           {
