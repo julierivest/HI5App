@@ -11,7 +11,6 @@
     <%= form.label :description, "Description:" %>
     <%= form.text_area :description, class: 'form-control', rows: '5' %>
   </div>
-
  
   <div class="form-group form-status">
     <label>Status: </label>
@@ -21,14 +20,18 @@
     <%= form.label :status, 'Started', :value => 'started' %>
     <%= form.radio_button :status, 'stopped' %>
     <%= form.label :status, 'Stopped', :value => 'stopped' %>
-    <%= form.radio_button :status, 'completed' %>
+    <%= form.radio_button :status, 'completed' , :id => 'statusCompletedSelected' %>
     <%= form.label :status, 'Completed', :value => 'completed' %>
   </div>
-
 
   <div class="form-group form-es-level">
     <label>Estimated level of effort: </label>
     <%= form.select :estimated_effort, options_for_select([[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]) %>
+  </div>
+
+  <div class="form-group form-ac-level" id="actualEffortForm" style="display: none" >
+    <label>Actual level of effort: </label>
+    <%= form.select :actual_effort, options_for_select([[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]) %>
   </div>
 
   <div class="form-group form-published">
