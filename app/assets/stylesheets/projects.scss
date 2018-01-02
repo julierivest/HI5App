@@ -10,6 +10,7 @@ $effort-text: #858d99;
   font-weight: 600;
 }
 
+// Project 'card' for index, user profile, & show pages
 .project-box{
   padding-bottom: 15px;
   box-sizing: border-box;
@@ -186,6 +187,7 @@ $effort-text: #858d99;
   }
 }
 
+// New project form
 .new_project{
   .form-description{
     textarea{
@@ -213,5 +215,22 @@ $effort-text: #858d99;
     &:focus{
       outline: none;
     }
+  }
+}
+
+// New project error messages
+.error_explanation{
+  border-radius: 4px;
+  border: 1px solid red;
+  background-color: white;
+  color: black;
+  padding: 10px 15px 0px 15px;
+  margin-bottom: 20px;
+  h4{
+    color:red;
+  }
+  .project-error-item{ 
+    color: black;
+    font-size: 12px;
   }
 }

@@ -1,10 +1,10 @@
 <% if form.errors.any? %>
     <div class="error_explanation">
-        <h2><%= pluralize(form.errors.count, "error") %> prevented this record from being saved:</h2>
-        <ul>
+        <h4><%= pluralize(form.errors.count, "error") %> prevented this record from being saved:</h4>
+        
         <% form.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+            <p class="project-error-item"><i class="fa fa-warning"></i> <%= msg %></p>
         <% end %>
-        </ul>
+        
     </div>
 <% end %>
