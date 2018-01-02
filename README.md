@@ -1,31 +1,18 @@
-Create a home-improvement management tool
+# Home ImprovementApp
 
-The purpose of this small test is to review how you handle the following concepts:
+A home-improvement management tool where users can post public or private projects, view & comment other people's posts.
 
-Migrations (database will be Postgres)
-3rd-party integration (Facebook sign-in)
-Policies
-Scopes
-Active-record relations
-Front-end design (HTML, re-usable CSS, javascript)
-Users will be able to sign-in using Facebook and create their own home-improvement project
+## Setup
 
-A home improvement project will have a name, a description, a type (private or public), an estimated level of effort, an actual level of effort, and a status (created, started, stopped, completed)
+1. Fork & Clone
+2. Run `bundle install` to install dependencies
+3. Create `config/database.yml` by copying `config/database.example.yml`
+4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
+5. Run `bin/rake db:reset` to create, load and seed db
+6. Create .env file based on .env.example
+9. Run `rails s` to start the server on localhost:3000
 
-All users will see all public projects
-Users will be able to view a public project and its comments
-Users will be able to add a comment to a public project
-Users will be able to comment on public projects (the implementation of a comment is left to you)
+## Admin Login details:
 
-There will be 1 administrator who will see all users, projects and comments.
-Admin will be able to delete users, projects or comments.
-Admin will be able to modify all project names, descriptions and comments
-Write a small test for the following cases:
-
-User cannot edit a public project’s name or effort-level (a project he is not owner of)
-Any other case of your choosing
-User interface design:
-
-The design of the interface is left up to you; you may focus more of your efforts on 1 section and present that section
-Write at least 1 component using REACT
-Use javascript to update a component of your choosing in real-time
+  Admin : email -> admin@hi.com
+          password -> admin@hi.com
