@@ -24,7 +24,7 @@ body{
   margin-bottom: 20px;
   h2{
     text-align: center;
-    color:red;
+    color: red;
     font-weight: 600;
     font-size: 18px;
   }
@@ -68,6 +68,9 @@ body{
     font-size: $font-12;
     padding: 8px 45px;
     margin-left: 20px;
+    &:hover{
+      background-color: #dd0d33;
+    }
   }
   #sign-in-btn{
     background-color: #073795;
