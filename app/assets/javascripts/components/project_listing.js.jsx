@@ -37,7 +37,7 @@ class ProjectListing extends React.Component {
                   <i className="fa fa-user" aria-hidden="true"></i>{
                     this.props.isAdmin
                       ? <a className="project-user" href={`/users/${id}`}>{user.name}</a>
-                      : user.name
+                      : <span className="project-user">{user.name}</span>
                   }
                   <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{moment(created_at).fromNow()}</span>
                 </div>

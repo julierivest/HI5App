@@ -31,6 +31,9 @@ $font-12: 12px;
       color: white;
       font-size: $font-12;
       font-weight: 400;
+      &:hover{
+        background-color: #dd0d33;
+      }
       &:focus{
         outline: none;
       }
@@ -43,7 +46,7 @@ $font-12: 12px;
     font-weight: 500;
     color: red;
   }
-  
+
   .comment{
     border-top: 1px solid white;
     padding: 15px 30px;
@@ -94,6 +97,9 @@ $font-12: 12px;
       font-size: $font-12;
       font-weight: 400;
       border: 1px solid $button-red;
+      &:hover{
+        background-color: #dd0d33;
+      }
       &:focus{
         outline: none;
       }

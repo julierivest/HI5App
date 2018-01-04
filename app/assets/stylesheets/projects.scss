@@ -92,6 +92,9 @@ $effort-text: #858d99;
         color: white;
         font-size: $font-12;
         font-weight: 400;
+        &:hover{
+          background-color: #dd0d33;
+        }
         &:focus{
           outline: none;
         }
@@ -212,6 +215,9 @@ $effort-text: #858d99;
     color: white;
     font-size: $font-12;
     font-weight: 400;
+    &:hover{
+      background-color: #dd0d33;
+    }
     &:focus{
       outline: none;
     }

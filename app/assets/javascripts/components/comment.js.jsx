@@ -29,10 +29,9 @@ class Comment extends React.Component {
     this.props.handleCommentUpdate(e, id, this.state.body)
       .then(response => {
       if(response.data.errors) {
-        console.log(response.data.errors)
         this.setState({
           hasError: true,
-          error: response.data.errors.body
+          error: "Comment cannot be blank"
         })
       } else {
         this.setState({
