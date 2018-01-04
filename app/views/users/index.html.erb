@@ -12,12 +12,12 @@
   <tbody>
     <% @users.each do |user| %>
     <tr>
-      <td><%= link_to user.name, profile_path(user) %></td>
+      <td><%= link_to user.name, user_path(user) %></td>
       <td><%= user.email %></td>
       <td><%= user.created_at.to_date %></td>
       <td><%= user.projects.count %></td>
-      <td><%= link_to 'delete', user_path(user),
-      data: {:confirm => 'Are you sure?'}, method: :delete, remote: true %></td>
+      <td><%= link_to raw("<i class='fa fa-trash'></i>"), user_path(user),
+      data: {:confirm => 'Are you sure?'}, method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

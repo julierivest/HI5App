@@ -3,6 +3,8 @@ class Comment extends React.Component {
     super(props)
     this.state = {
       editing: false,
+      hasError: false,
+      error: null,
       body: props.body,
     }
     this.renderEditForm = this.renderEditForm.bind(this)
@@ -23,9 +25,23 @@ class Comment extends React.Component {
     })
   }
 
-  handleCommentUpdate(id, body) {
-    this.props.handleCommentUpdate(id, this.state.body)
-    this.setState({editing: false})
+  handleCommentUpdate(e, id, body) {
+    this.props.handleCommentUpdate(e, id, this.state.body)
+      .then(response => {
+      if(response.data.errors) {
+        console.log(response.data.errors)
+        this.setState({
+          hasError: true,
+          error: response.data.errors.body
+        })
+      } else {
+        this.setState({
+          editing: false,
+          hasError: false,
+          error: null
+      })
+      }
+    })
   }
 
   renderComment() {
@@ -53,7 +69,10 @@ class Comment extends React.Component {
   }
 
   renderEditForm() {
-    const { id, body, user, created_at } = this.props
+    const { id, body, user, created_at,  } = this.props
+    const style = {}
+    if ( this.state.hasError) style.border = '1px solid red'
+
     return (
       <div className="comment">
         <form onSubmit={(e) => this.handleCommentUpdate(id, this.state.body)}>
@@ -64,10 +83,16 @@ class Comment extends React.Component {
             className="comment-textarea-edit"
             value={this.state.body}
             onChange={this.handleChange}
+            style={style}
           ></textarea>
-          <button className="comment-update-btn" type="submit" onClick={(e) => this.handleCommentUpdate(id, this.state.body)}>Update</button>
+          <button className="comment-update-btn" type="submit" onClick={(e) => this.handleCommentUpdate(e, id, this.state.body)}>Update</button>
           </div>
         </form>
+        {
+            this.state.hasError
+              ? <div className="comment-error-msg"><i className="fa fa-warning"></i> { this.state.error }</div>
+              : null
+          }
       </div>
     )
   }

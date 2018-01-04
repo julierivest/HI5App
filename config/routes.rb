@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     delete "/users/sign_out" => "devise/sessions#destroy"
   end
 
-  resources :users, except: [:show] do
+  resources :users do
     resources :projects
   end
 

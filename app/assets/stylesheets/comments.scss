@@ -35,12 +35,15 @@ $font-12: 12px;
         outline: none;
       }
     }
-    .comment-error-msg{
-      font-size: $font-12;
-      font-weight: 500;
-      color: red;
-    }
+
   }
+
+  .comment-error-msg{
+    font-size: $font-12;
+    font-weight: 500;
+    color: red;
+  }
+  
   .comment{
     border-top: 1px solid white;
     padding: 15px 30px;

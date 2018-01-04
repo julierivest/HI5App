@@ -2,7 +2,10 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
 
-    <%= react_component("ProjectsContainer", { projects: @projects }) %>
+    <%= react_component("ProjectsContainer", {
+      projects: @projects,
+      isAdmin: current_user.admin?
+    }) %>
 
   </div>
   <div class="col-md-2"></div>

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = params[:id].blank? ? current_user : User.find(params[:id])
     authorize @user
   end
 
@@ -16,9 +16,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_path }
-      format.js { }
-    end
+    redirect_to users_path
   end
 end

@@ -34,7 +34,11 @@ class ProjectListing extends React.Component {
             </div>
             <div className="project-subheader">
                 <div className="project-info">
-                  <i className="fa fa-user" aria-hidden="true"></i><a className="project-user" href={`/profile.${id}`}>{user.name}</a>
+                  <i className="fa fa-user" aria-hidden="true"></i>{
+                    this.props.isAdmin
+                      ? <a className="project-user" href={`/users/${id}`}>{user.name}</a>
+                      : user.name
+                  }
                   <i className="fa fa-clock-o" aria-hidden="true"></i><span className="project-date">{moment(created_at).fromNow()}</span>
                 </div>
             </div>

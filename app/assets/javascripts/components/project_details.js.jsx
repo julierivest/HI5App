@@ -71,14 +71,16 @@ class ProjectDetails extends React.Component {
     }
   }
 
-  handleCommentUpdate(id, body) {
-    axios.put(`/projects/${this.props.project.id}/comments/${id}`, {
+  handleCommentUpdate(e, id, body) {
+    e.preventDefault()
+    return axios.put(`/projects/${this.props.project.id}/comments/${id}`, {
       authenticity_token: this.props.form_token,
       comment: {
         body: body
       }
     }).then((response) => {
       this.loadComments()
+      return response
     })
   }
 
