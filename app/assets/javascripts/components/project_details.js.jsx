@@ -215,6 +215,7 @@ class ProjectDetails extends React.Component {
     const descriptionStyle = {}
     const actualEffortStyle = {}
     const project_errors = []
+    const effortLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const statusStyle = {}
 
     if (this.state.status === 'started') {
@@ -312,16 +313,18 @@ class ProjectDetails extends React.Component {
                 </div>
                 <div className="ac-effort-div text-center">
                   <span className="effort-title" style={ this.state.status === 'completed' ? {color: 'black'} : null }>Actual level of effort</span>
-                  <span className="project-ac-effort">{
+                  <span className="project-ac-effort">
+                  {
                     this.state.editing && this.state.status === 'completed' ?
-                    (
-                      <input className="project-edit-ac-effort"
-                        type='text'
-                        value={this.state.actual_effort}
-                        onChange={this.handleActualEffortChanged}
-                        style={actualEffortStyle}
-                      />
-                    )
+                      ( <select className="project-edit-ac-effort"
+                          value={this.state.actual_effort}
+                          onChange={this.handleActualEffortChanged}
+                          style={actualEffortStyle}>
+                          {
+                            effortLevels.map(level => <option value={level}>{level}</option>)
+                          }
+                        </select>
+                      )
                     : this.state.actual_effort ? this.state.actual_effort : '\u00A0'
                   }
                   </span>
