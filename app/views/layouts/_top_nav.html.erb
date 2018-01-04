@@ -11,10 +11,10 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <% if current_user %>
-        <li><%= link_to 'HOME', projects_path, :class => "nav-link" %></li>
-        <li><%= link_to "MY PROJECTS", profile_path, :class => "nav-link" %></li>
+          <li><%= link_to 'HOME', projects_path, :class => "btn navbar-btn", :id => "nav-link" %></li>
+          <li><%= link_to "MY PROJECTS", profile_path, :class => "btn navbar-btn", :id => "nav-link" %></li>
         <% if current_user.admin %>
-        <li><%= link_to "USERS", users_path, :class => "nav-link" %></li>
+          <li><%= link_to "USERS", users_path, :class => "btn navbar-btn", :id => "nav-link" %></li>
         <% end %>
         <li>
           <%= link_to "NEW PROJECT", new_project_path, :class => "btn navbar-btn", :id => "new-project-btn" %>
@@ -23,7 +23,6 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-
         <li>
           <%= link_to "SIGN OUT", destroy_user_session_path, method: :get, :class => "btn navbar-btn", :id => "sign-in-btn"%>
         </li>

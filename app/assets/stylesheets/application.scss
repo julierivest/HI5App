@@ -58,9 +58,14 @@ body{
     font-weight: 700;
     padding-left: 20px;
   }
-  li > a.nav-link{
+  li > a#nav-link{
     color: white;
     font-size: $font-12;
+    padding: 8px 10px;
+    margin-left: 5px;
+    &:hover{
+      background-color: #073186;
+    }
   }
   #new-project-btn{
     background-color: $button-red;
