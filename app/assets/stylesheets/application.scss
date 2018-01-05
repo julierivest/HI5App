@@ -12,6 +12,7 @@ $background-grey: #eff3f7;
 $button-red: #fa0f3a;
 $font-size: 12px;
 $icon-grey: #676166;
+$nav-blue: #093ac9;
 
 body{
   padding-top: 110px;
@@ -37,20 +38,24 @@ body{
 
 // Alerts
 .alert-alert {
+  border: 2px solid white;
   background-color: red;
   color: white;
   text-align: center;
+  font-weight: 500;
 }
 .alert-notice {
-  background-color: #2a74fd;
+  border: 2px solid white;
+  background-color: rgb(176, 73, 207);
   color: white;
   text-align: center;
+  font-weight: 500;
 }
 
 // Navbar
 .navbar {
   border-radius: 0px;
-  background-color: #093ac9;
+  background-color: $nav-blue;
   border: none;
   .navbar-brand{
     font-size: 16px;
@@ -66,6 +71,14 @@ body{
     &:hover{
       background-color: #073186;
     }
+  }
+  li > a#nav-link.current{
+    color: white;
+    font-size: $font-12;
+    padding: 8px 10px;
+    margin-left: 5px;
+    text-decoration: underline;
+    //background-color: #073186;
   }
   #new-project-btn{
     background-color: $button-red;
@@ -159,3 +172,61 @@ body{
     }
   }
 }
+
+// Edit user pg (yet to link up)
+.edit-user{
+  form#edit_user{
+    padding: 0px 20px;
+    width: 100%;
+    margin: 0px;
+    .field{
+      margin: 15px;
+    }
+    #user_email, 
+    #user_name,
+    #user_password, 
+    #user_password_confirmation, 
+    #user_current_password{
+      width: 100%;
+      border: 1px solid lightgray;
+      border-radius: 2px;
+      padding: 6px 12px;
+    }
+    #update-user-btn{
+      border: 1px solid $button-red;
+      background-color: $button-red;
+      padding: 4px 16px;
+      border-radius: 3px;
+      color: white;
+      text-align: center;
+      font-size: $font-12;
+      font-weight: 400;
+      &:hover{
+        background-color: #dd0d33;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  hr{
+    border-color: black;
+  }
+  #delete-acc-btn{
+    border: 1px solid $button-red;
+    background-color: $button-red;
+    padding: 4px 16px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    font-size: $font-12;
+    font-weight: 400;
+    &:hover{
+      background-color: #dd0d33;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+}
+

@@ -22,11 +22,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    record == user
+    record == user || user.admin?
   end
 
   def update?
-    record == user
+    record == user || user.admin?
   end
 
   class Scope < Scope

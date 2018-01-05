@@ -11,32 +11,32 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <% if current_user %>
-          <li><%= link_to 'HOME', projects_path, :class => "btn navbar-btn", :id => "nav-link" %></li>
-          <li><%= link_to "MY PROJECTS", profile_path, :class => "btn navbar-btn", :id => "nav-link" %></li>
-        <% if current_user.admin %>
-          <li><%= link_to "USERS", users_path, :class => "btn navbar-btn", :id => "nav-link" %></li>
-        <% end %>
-        <li>
-          <%= link_to "NEW PROJECT", new_project_path, :class => "btn navbar-btn", :id => "new-project-btn" %>
-        </li>
+          <li><%= link_to 'HOME', projects_path, :class => "btn navbar-btn #{cp(projects_path)}", :id => "nav-link" %></li>
+          <li><%= link_to "MY PROJECTS", profile_path, :class => "btn navbar-btn #{cp(profile_path)}", :id => "nav-link" %></li>
+          <% if current_user.admin %>
+            <li><%= link_to "USERS", users_path, :class => "btn navbar-btn #{cp(users_path)}", :id => "nav-link" %></li>
+          <% end %>
+          <li>
+            <%= link_to "NEW PROJECT", new_project_path, :class => "btn navbar-btn", :id => "new-project-btn" %>
+          </li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-        <li>
-          <%= link_to "SIGN OUT", destroy_user_session_path, method: :get, :class => "btn navbar-btn", :id => "sign-in-btn"%>
-        </li>
+          <li>
+            <%= link_to "SIGN OUT", destroy_user_session_path, method: :get, :class => "btn navbar-btn", :id => "sign-in-btn"%>
+          </li>
         <% else %>
-        <li>
-          <%= link_to "SIGN UP", new_registration_path(resource_name), :class => "btn navbar-btn", :id => "sign-in-btn" %>
-        </li>
-        <li>
-         <%= link_to "SIGN IN", new_session_path(resource_name), :class => "btn navbar-btn", :id => "sign-in-btn" %>
-       </li>
-       <% end %>
-     </ul>
-   </div>
- </div>
+          <li>
+            <%= link_to "SIGN UP", new_registration_path(resource_name), :class => "btn navbar-btn", :id => "sign-in-btn" %>
+          </li>
+          <li>
+            <%= link_to "SIGN IN", new_session_path(resource_name), :class => "btn navbar-btn", :id => "sign-in-btn" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 

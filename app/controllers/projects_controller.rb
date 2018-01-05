@@ -14,12 +14,6 @@ class ProjectsController < ApplicationController
     @project = @project.as_json(include: [:user, :comments])
   end
 
-  def edit
-    @project = user_projects.find(params[:id])
-    @user = current_user
-    authorize @project
-  end
-
   def new
     @project = user_projects.build
     authorize @project
@@ -35,6 +29,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    @project = user_projects.find(params[:id])
+    @user = current_user
+    authorize @project
+  end
+  
   def update
     @project = user_projects.find(params[:id])
     authorize @project
