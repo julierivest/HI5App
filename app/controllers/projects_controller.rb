@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     @user = current_user
     authorize @project
   end
-  
+
   def update
     @project = user_projects.find(params[:id])
     authorize @project

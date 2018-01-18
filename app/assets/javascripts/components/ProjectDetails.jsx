@@ -114,7 +114,7 @@ class ProjectDetails extends React.Component {
         }
       }).then((response) => {
         if(response.errors) {
-          alert('some shit went wrong saving the project')
+          alert('Something went wrong saving the project')
           return
         } else {
           this.setState({
